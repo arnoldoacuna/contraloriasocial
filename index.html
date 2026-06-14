@@ -3,966 +3,972 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comités de Contraloría Social – Secretaría de Bienestar de Sonora</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Comites de Contraloria Social - Secretaria de Bienestar de Sonora</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" onerror="this.href='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css'"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --vino:#5C1A2E;
-  --vino-dark:#3D1020;
-  --vino-mid:#7A2440;
-  --naranja:#E8821A;
-  --naranja-light:#F0A050;
-  --crema:#F5EFE6;
-  --crema-dark:#EDE4D7;
-  --blanco:#FFFFFF;
-  --gris-texto:#6B5B50;
-  --gris-borde:#D8CFC4;
-  --card-dark:#4A1525;
-  --verde:#2A7A4B;
-  --rojo:#C0392B;
+:root{--vino:#5C1A2E;--vd:#3D1020;--vm:#7A2440;--naranja:#E8821A;--nl:#F0A050;--fucsia:#D4006A;--crema:#F5EFE6;--c2:#EDE4D7;--c3:#E8DDD0;--gris:#6B5B50;--borde:#D8CFC4;--verde:#2A7A4B;--blanco:#FFFFFF}
+html,body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--crema);color:#2C1810}
+
+/* NAV */
+#topnav{background:var(--crema);border-bottom:1.5px solid var(--borde);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:60px;position:sticky;top:0;z-index:1000}
+.nb{display:flex;align-items:center;gap:10px}
+.ni{width:34px;height:34px;background:var(--vino);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ni svg{width:18px;height:18px;fill:var(--naranja)}
+.nt strong{display:block;font-size:13.5px;font-weight:600;color:var(--vd);letter-spacing:-.01em}
+.nt span{display:block;font-size:10px;color:var(--gris);text-transform:uppercase;letter-spacing:.08em}
+.nl{display:flex;align-items:center;gap:2.2rem}
+.nl a{font-size:13.5px;font-weight:500;color:#4A3728;cursor:pointer;text-decoration:none;transition:color .2s;position:relative;padding-bottom:4px}
+.nl a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--naranja);border-radius:2px;opacity:0;transform:scaleX(.5);transition:all .2s}
+.nl a:hover{color:var(--vino)}
+.nl a:hover::after{opacity:1;transform:scaleX(1)}
+.nadm{background:var(--vino);color:var(--blanco);border:none;border-radius:24px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:background .2s}
+.nadm:hover{background:var(--vm)}
+
+/* HERO */
+.hero{
+  background:
+    radial-gradient(ellipse at 68% 35%, rgba(139,50,84,.58) 0%,transparent 52%),
+    radial-gradient(ellipse at 18% 85%, rgba(61,16,32,.48) 0%,transparent 48%),
+    linear-gradient(138deg,#3D1020 0%,#5C1A2E 44%,#7A2440 70%,#4A1525 100%);
+  padding:4.5rem 6rem 6rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  position:relative;overflow:hidden;
 }
-body{font-family:'Inter',sans-serif;background:var(--crema);color:#2C1810;min-height:100vh}
+.hero::before{content:'';position:absolute;top:-80px;right:260px;width:520px;height:520px;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.hero-arc{position:absolute;bottom:-1px;left:0;right:0;height:50px;background:var(--crema);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero-left{text-align:center}
+.htag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:5px 14px;font-size:10px;font-weight:600;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.2rem}
+.htag svg{width:12px;height:12px;stroke:var(--naranja);fill:none;stroke-width:2}
+.htitle{font-family:'Playfair Display',Georgia,serif;color:var(--blanco);font-size:3.2rem;line-height:1.06;font-weight:700;letter-spacing:-.02em}
+.htitle em{color:var(--naranja);font-style:italic;display:block}
+.hsub{margin:1.1rem auto 0;color:rgba(255,255,255,.7);font-size:14.5px;line-height:1.75;max-width:460px}
+.hsub strong{color:var(--blanco);font-weight:600}
+.hctas{display:flex;gap:10px;margin-top:1.9rem;justify-content:center;flex-wrap:wrap}
+.bpri{background:var(--naranja);color:var(--blanco);border:none;border-radius:28px;padding:11px 24px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;transition:background .2s,transform .15s}
+.bpri:hover{background:var(--nl);transform:translateY(-1px)}
+.bout{background:rgba(255,255,255,.08);color:var(--blanco);border:1.5px solid rgba(255,255,255,.3);border-radius:28px;padding:11px 24px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .2s}
+.bout:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.12)}
+.scard{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:1.5rem;max-width:340px;margin:0 auto;width:100%;backdrop-filter:blur(6px)}
+.scard-ttl{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.05rem;display:flex;align-items:center;gap:7px}
+.scard-ttl::before{content:'';width:16px;height:2px;background:var(--naranja);border-radius:2px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sbox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;transition:background .2s}
+.sbox:hover{background:rgba(255,255,255,.11)}
+.sico{width:30px;height:30px;background:rgba(232,130,26,.2);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:.6rem}
+.sico svg{width:15px;height:15px;stroke:var(--naranja);fill:none;stroke-width:2}
+.snum{font-family:'Playfair Display',Georgia,serif;font-size:2.1rem;font-weight:700;color:var(--blanco);line-height:1}
+.slbl{font-size:9px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.07em;margin-top:.25rem}
 
-/* ── NAVBAR ── */
-nav{position:sticky;top:0;z-index:1000;background:var(--crema);border-bottom:1px solid var(--gris-borde);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px}
-.nav-brand{display:flex;align-items:center;gap:10px}
-.nav-icon{width:34px;height:34px;background:var(--vino);border-radius:8px;display:flex;align-items:center;justify-content:center}
-.nav-icon svg{width:18px;height:18px;fill:var(--naranja)}
-.nav-title{line-height:1.1}
-.nav-title span{display:block;font-size:10px;font-weight:500;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.08em}
-.nav-title strong{font-size:13px;font-weight:600;color:var(--vino-dark)}
-.nav-links{display:flex;align-items:center;gap:2rem}
-.nav-links a{font-size:13.5px;font-weight:500;color:#4A3728;text-decoration:none;cursor:pointer;transition:color .2s}
-.nav-links a:hover{color:var(--vino)}
-.btn-admin{background:var(--vino);color:var(--blanco);border:none;border-radius:24px;padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .2s}
-.btn-admin:hover{background:var(--vino-mid)}
+/* SECTIONS */
+.sec{padding:3rem 4rem 3.2rem;max-width:1280px;margin:0 auto}
+.pill{display:inline-flex;align-items:center;gap:5px;background:rgba(92,26,46,.08);border:1px solid rgba(92,26,46,.12);border-radius:18px;padding:5px 14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--vino);margin-bottom:1rem}
+.stitle{font-family:'Playfair Display',Georgia,serif;font-size:2rem;color:var(--vd);margin-bottom:.3rem;letter-spacing:-.02em}
+.ssub{font-size:13.5px;color:var(--gris);margin-bottom:1.5rem}
 
-/* ── HERO ── */
-.hero{background:linear-gradient(135deg,var(--vino-dark) 0%,var(--vino) 55%,#8B3254 100%);padding:4.5rem 2rem 5rem;display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:center;max-width:100%;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:40px;background:var(--crema);clip-path:ellipse(55% 100% at 50% 100%)}
-.hero-title{font-family:'Playfair Display',serif;color:var(--blanco);font-size:clamp(2.4rem,4vw,3.4rem);line-height:1.1;font-weight:700}
-.hero-title em{color:var(--naranja);font-style:italic}
-.hero-subtitle{margin-top:1rem;color:rgba(255,255,255,.75);font-size:14.5px;line-height:1.6;max-width:500px}
-.hero-subtitle strong{color:var(--blanco)}
-.hero-ctas{display:flex;gap:12px;margin-top:2rem;flex-wrap:wrap}
-.btn-primary{background:var(--naranja);color:var(--blanco);border:none;border-radius:28px;padding:11px 24px;font-size:14px;font-weight:500;cursor:pointer;transition:transform .15s,background .2s;display:inline-flex;align-items:center;gap:6px}
-.btn-primary:hover{background:var(--naranja-light);transform:translateY(-1px)}
-.btn-outline{background:transparent;color:var(--blanco);border:1.5px solid rgba(255,255,255,.4);border-radius:28px;padding:11px 24px;font-size:14px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;display:inline-flex;align-items:center;gap:6px}
-.btn-outline:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.08)}
-.hero-stats-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.25rem;backdrop-filter:blur(4px)}
-.hero-stats-card h4{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1rem}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.stat-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.9rem}
-.stat-box svg{width:18px;height:18px;stroke:var(--naranja);fill:none;stroke-width:2;margin-bottom:.4rem}
-.stat-num{font-size:2rem;font-weight:700;color:var(--blanco);line-height:1}
-.stat-label{font-size:10px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem}
+/* MAP LAYOUT */
+.mlayout{display:grid;grid-template-columns:280px 1fr;gap:1.2rem;align-items:start}
+.fcard{background:var(--blanco);border:1.5px solid var(--borde);border-radius:16px;padding:1.4rem;box-shadow:0 2px 12px rgba(92,26,46,.06);position:sticky;top:76px}
+.fl{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--naranja);margin-bottom:.35rem}
+.ft{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;color:var(--vd);margin-bottom:1.1rem}
+.fg{margin-bottom:.85rem}
+.fg label{display:block;font-size:10px;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.32rem}
+.fg input,.fg select{width:100%;border:1.5px solid var(--borde);border-radius:8px;padding:8px 11px;font-size:13px;background:var(--crema);color:#2C1810;outline:none;font-family:inherit;transition:border-color .2s}
+.fg input:focus,.fg select:focus{border-color:var(--vm);background:var(--blanco)}
+.fclear{font-size:12px;color:var(--naranja);cursor:pointer;background:none;border:none;font-family:inherit;font-weight:500;margin-top:.35rem}
+.fcnt{font-size:12px;color:var(--gris);margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--c2)}
+.fcnt strong{color:var(--vino);font-weight:600}
+#map{height:560px;border-radius:14px;border:1.5px solid var(--borde);background:var(--c2)}
 
-/* ── SECCIÓN MAPA ── */
-.map-section{padding:2.5rem 2rem 3rem;max-width:1280px;margin:0 auto}
-.map-section-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--vino-dark);margin-bottom:.3rem}
-.map-section-subtitle{font-size:14px;color:var(--gris-texto);margin-bottom:1.5rem}
-.map-hint{background:var(--vino);color:var(--blanco);font-size:12px;padding:6px 14px;border-radius:20px;display:inline-block;margin-bottom:1.2rem}
-.map-container{display:grid;grid-template-columns:300px 1fr;gap:1.2rem;align-items:start}
-.filters-card{background:var(--blanco);border-radius:16px;border:1px solid var(--gris-borde);padding:1.3rem;position:sticky;top:72px}
-.filters-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--naranja);margin-bottom:.4rem}
-.filters-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--vino-dark);margin-bottom:1.2rem}
-.filter-group{margin-bottom:1rem}
-.filter-group label{display:block;font-size:11px;font-weight:600;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem}
-.filter-group input,.filter-group select{width:100%;border:1px solid var(--gris-borde);border-radius:8px;padding:7px 10px;font-size:13px;background:var(--crema);color:#2C1810;outline:none;font-family:'Inter',sans-serif}
-.filter-group input:focus,.filter-group select:focus{border-color:var(--vino-mid)}
-.filter-clear{font-size:12px;color:var(--naranja);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Inter',sans-serif;margin-top:.5rem}
-.filter-count{font-size:12px;color:var(--gris-texto);margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--crema-dark)}
-.filter-count strong{color:var(--vino)}
-#map{height:540px;border-radius:14px;border:1px solid var(--gris-borde);z-index:1}
+@keyframes ring{0%{transform:scale(1);opacity:.85}100%{transform:scale(3.6);opacity:0}}
 
-/* ── LISTA COMITÉS ── */
-.committees-section{padding:1rem 2rem 3rem;max-width:1280px;margin:0 auto}
-.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.2rem}
-.section-header h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--vino-dark)}
-.badge-count{background:var(--vino);color:var(--blanco);font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;margin-left:10px}
-.committees-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
-.committee-card{background:var(--blanco);border:1px solid var(--gris-borde);border-radius:14px;padding:1.1rem;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .2s}
-.committee-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(92,26,46,.12);border-color:var(--vino-mid)}
-.card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.7rem}
-.card-municipality{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--vino-dark);font-weight:700}
-.card-region{font-size:11px;color:var(--gris-texto);margin-top:1px}
-.card-badge{background:var(--crema);color:var(--vino);font-size:10px;font-weight:600;padding:3px 8px;border-radius:12px;white-space:nowrap;border:1px solid var(--gris-borde)}
-.card-meta{display:flex;gap:1rem;font-size:12px;color:var(--gris-texto);flex-wrap:wrap;margin-bottom:.7rem}
-.card-meta span{display:flex;align-items:center;gap:4px}
-.card-meta svg{width:13px;height:13px;stroke:var(--naranja);fill:none;stroke-width:2}
-.card-members{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
-.member-chip{font-size:10.5px;background:var(--crema);border:1px solid var(--gris-borde);border-radius:20px;padding:2px 8px;color:var(--gris-texto)}
-.member-chip.pres{background:#FEF3E2;border-color:#F0A050;color:#7A4A0A}
-.card-docs{display:flex;gap:5px;flex-wrap:wrap;padding-top:.65rem;border-top:1px solid var(--crema-dark)}
-.doc-chip{font-size:10px;background:rgba(92,26,46,.06);color:var(--vino-mid);border-radius:10px;padding:2px 8px;display:flex;align-items:center;gap:3px}
-.doc-chip svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2}
-.doc-chip.missing{background:rgba(200,200,200,.15);color:#AAA}
+/* COMMITTEE GRID */
+.lsec{padding:.5rem 4rem 3.2rem;max-width:1280px;margin:0 auto}
+.lhdr{display:flex;align-items:baseline;gap:9px;margin-bottom:1.2rem}
+.lhdr h2{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;color:var(--vd);letter-spacing:-.02em}
+.bdg{background:var(--vino);color:var(--blanco);font-size:11px;font-weight:600;padding:3px 11px;border-radius:13px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+.ccard{background:var(--blanco);border:1.5px solid var(--borde);border-radius:14px;padding:1.1rem;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .2s;position:relative;overflow:hidden}
+.ccard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fucsia),var(--naranja));opacity:0;transition:opacity .2s}
+.ccard:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(92,26,46,.13);border-color:var(--vm)}
+.ccard:hover::before{opacity:1}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem}
+.cmun{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;color:var(--vd);font-weight:700}
+.creg{font-size:10.5px;color:var(--gris);margin-top:2px}
+.cbdg{background:var(--crema);color:var(--vino);font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:10px;border:1px solid var(--c3)}
+.cmeta{display:flex;gap:.75rem;font-size:11.5px;color:var(--gris);flex-wrap:wrap;margin-bottom:.6rem}
+.cchips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.6rem}
+.chip{font-size:10px;background:var(--crema);border:1px solid var(--borde);border-radius:13px;padding:2px 7px;color:var(--gris);font-weight:500}
+.chip.p{background:#FEF3E2;border-color:#F0A050;color:#7A4A0A}
+.cdocs{display:flex;gap:4px;flex-wrap:wrap;padding-top:.55rem;border-top:1px solid var(--c2)}
+.dtag{font-size:9px;border-radius:6px;padding:2px 6px;font-weight:500}
+.dtag.ok{background:rgba(42,122,75,.1);color:#1A5430}
+.dtag.no{background:rgba(180,180,180,.13);color:#AAA}
 
-/* ── PROGRAMA ── */
-.program-section{background:var(--vino-dark);padding:3.5rem 2rem;color:var(--blanco)}
-.program-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-.program-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja);margin-bottom:.6rem}
-.program-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--blanco);margin-bottom:1rem;line-height:1.2}
-.program-text{font-size:14px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:1rem}
-.program-amount{font-size:2rem;font-weight:700;color:var(--naranja)}
-.program-amount-label{font-size:12px;color:rgba(255,255,255,.55)}
-.cs-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:1.4rem}
-.cs-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--blanco);margin-bottom:.8rem}
-.cs-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-.cs-list li{font-size:13px;color:rgba(255,255,255,.75);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
-.cs-list li::before{content:'';min-width:6px;height:6px;background:var(--naranja);border-radius:50%;margin-top:5px}
+/* PROGRAM */
+.psec{background:linear-gradient(138deg,var(--vd) 0%,#4A1525 50%,var(--vino) 100%);padding:3.8rem 6rem;color:var(--blanco);position:relative;overflow:hidden}
+.psec::before{content:'';position:absolute;top:-90px;right:-90px;width:380px;height:380px;background:radial-gradient(circle,rgba(232,130,26,.1) 0%,transparent 70%);border-radius:50%}
+.pinner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;position:relative}
+.plbl{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja);margin-bottom:.55rem;display:flex;align-items:center;gap:7px}
+.plbl::before{content:'';width:16px;height:2px;background:var(--naranja);border-radius:2px}
+.ptitle{font-family:'Playfair Display',Georgia,serif;font-size:1.75rem;color:var(--blanco);margin-bottom:.9rem;line-height:1.2;letter-spacing:-.02em}
+.ptext{font-size:14px;line-height:1.78;color:rgba(255,255,255,.7);margin-bottom:.85rem}
+.pamt{font-family:'Playfair Display',Georgia,serif;font-size:2.3rem;font-weight:700;color:var(--naranja)}
+.pquote{font-size:12px;background:rgba(255,255,255,.06);border-left:3px solid var(--naranja);padding:.65rem .9rem;border-radius:0 6px 6px 0;margin-top:1rem;color:rgba(255,255,255,.6);font-style:italic;line-height:1.65}
+.cscard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:1.5rem}
+.cscard h3{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;color:var(--blanco);margin-bottom:.85rem;line-height:1.3}
+.cslist{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.cslist li{font-size:13.5px;color:rgba(255,255,255,.7);display:flex;align-items:flex-start;gap:8px;line-height:1.55}
+.cslist li::before{content:'';min-width:5px;height:5px;background:var(--naranja);border-radius:50%;margin-top:6px;flex-shrink:0}
+footer{background:var(--vd);padding:1.4rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+footer span{font-size:11px;color:rgba(255,255,255,.32)}
+.flogo{display:flex;align-items:center;gap:8px}
+.flogo span{font-size:11.5px;color:rgba(255,255,255,.42);font-weight:500}
 
-/* ── FOOTER ── */
-footer{background:var(--vino-dark);border-top:1px solid rgba(255,255,255,.1);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
-footer span{font-size:12px;color:rgba(255,255,255,.4)}
+/* FAB - fixed, right center, persists on scroll */
+#fab{position:fixed;right:1.5rem;bottom:1.5rem;z-index:900;background:var(--vino);color:var(--blanco);border:none;border-radius:30px;padding:13px 22px;display:flex;align-items:center;gap:9px;box-shadow:0 6px 24px rgba(92,26,46,.4);cursor:pointer;font-family:inherit;transition:background .2s,transform .15s}
+#fab:hover{background:var(--vm);transform:translateY(-2px)}
+#fab svg{width:18px;height:18px;stroke:var(--naranja);fill:none;stroke-width:2;flex-shrink:0}
+#fab .ftxt{font-size:12.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
 
-/* ── FAB DENUNCIA ── */
-.fab{position:fixed;bottom:2rem;right:2rem;z-index:999;background:var(--vino);color:var(--blanco);border:none;border-radius:28px;padding:12px 20px;font-size:13px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(92,26,46,.4);transition:transform .2s,background .2s}
-.fab:hover{background:var(--vino-mid);transform:translateY(-2px)}
-.fab svg{width:16px;height:16px;stroke:var(--naranja);fill:none;stroke-width:2}
+/* MODALS */
+.ov{position:fixed;inset:0;z-index:2000;background:rgba(30,8,18,.6);display:flex;align-items:center;justify-content:center;padding:1.2rem;opacity:0;pointer-events:none;transition:opacity .22s;backdrop-filter:blur(3px)}
+.ov.open{opacity:1;pointer-events:all}
+.pop{background:var(--blanco);border-radius:20px;width:100%;max-width:660px;max-height:88vh;overflow-y:auto;box-shadow:0 24px 70px rgba(30,8,18,.4);display:flex;flex-direction:column}
+.pop.wide{max-width:900px}
+.ph{padding:1.4rem 1.6rem 1.15rem;border-radius:20px 20px 0 0;flex-shrink:0;position:sticky;top:0;z-index:2}
+.ph.a{background:linear-gradient(135deg,var(--vd),var(--vino))}
+.ph.b{background:linear-gradient(135deg,#1E0510,var(--vd))}
+.ph h2{font-family:'Playfair Display',Georgia,serif;font-size:1.4rem;color:var(--blanco);letter-spacing:-.01em}
+.ph p{font-size:11.5px;color:rgba(255,255,255,.55);margin-top:.18rem}
+.pclose{position:absolute;top:.9rem;right:.95rem;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;color:var(--blanco);font-size:17px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.pclose:hover{background:rgba(255,255,255,.3)}
+.pb{padding:1.6rem;flex:1}
+.ms{margin-bottom:1.3rem}
+.ms h4{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--naranja);margin-bottom:.65rem;padding-bottom:.4rem;border-bottom:1.5px solid var(--c2);display:flex;align-items:center;gap:5px}
+.ms h4::before{content:'';width:12px;height:2px;background:var(--naranja);border-radius:2px}
+.ir{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--c2);font-size:13px}
+.ir:last-child{border-bottom:none}
+.ik{color:var(--gris);font-weight:500}.iv{color:#2C1810;font-weight:600}
+.mlist{display:flex;flex-direction:column;gap:.42rem}
+.mrow{display:flex;align-items:center;gap:10px;padding:.52rem .68rem;background:var(--crema);border-radius:8px}
+.mrole{font-size:9.5px;font-weight:700;color:var(--vino);text-transform:uppercase;letter-spacing:.05em;min-width:90px}
+.mname{font-size:13.5px;color:#2C1810}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.di{border:1.5px solid var(--borde);border-radius:10px;padding:.65rem .82rem;display:flex;align-items:center;gap:.55rem;cursor:pointer;transition:all .15s}
+.di.ok{border-color:var(--verde);background:rgba(42,122,75,.05);color:#1A5430}
+.di.ok:hover{background:rgba(42,122,75,.1)}
+.di.miss{color:#CCC;cursor:default}
+.dico{width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:6px}
+.di.ok .dico{background:rgba(42,122,75,.1)}
+.di.miss .dico{background:rgba(200,200,200,.12)}
+.dico svg{width:15px;height:15px;fill:none;stroke-width:1.5}
+.di.ok .dico svg{stroke:#2A7A4B}
+.di.miss .dico svg{stroke:#CCC}
+.di div span{font-size:12px}
+.mact{display:flex;gap:.55rem;justify-content:flex-end;padding-top:.7rem;border-top:1.5px solid var(--c2);margin-top:.4rem}
+.bcan{background:var(--crema);color:var(--gris);border:none;border-radius:20px;padding:9px 19px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
+.bsv{background:var(--naranja);color:var(--blanco);border:none;border-radius:20px;padding:9px 23px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .2s}
+.bsv:hover{background:var(--nl)}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.7rem}
+.fr.full{grid-template-columns:1fr}
+.fg2 label{display:block;font-size:10px;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.28rem}
+.fg2 input,.fg2 select,.fg2 textarea{width:100%;border:1.5px solid var(--borde);border-radius:9px;padding:9px 12px;font-size:13.5px;font-family:inherit;outline:none;background:var(--blanco);color:#2C1810;transition:border-color .2s}
+.fg2 input:focus,.fg2 select:focus,.fg2 textarea:focus{border-color:var(--vm)}
+.dug{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.4rem}
+.du{border:1.5px dashed var(--borde);border-radius:9px;padding:.75rem;text-align:center;cursor:pointer;position:relative;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.du:hover{border-color:var(--vm);background:var(--crema)}
+.du.done{border-color:var(--verde);border-style:solid;background:rgba(42,122,75,.04)}
+.du input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.du span{display:block;font-size:10.5px;color:var(--gris);font-weight:500}
+.du.done span{color:var(--verde)}
+.du-ic{width:18px;height:18px;stroke:var(--gris);fill:none;stroke-width:2}
+.du.done .du-ic{stroke:var(--verde)}
+.rg{display:flex;flex-direction:column;gap:.42rem;margin-bottom:.9rem}
+.ro{display:flex;align-items:center;gap:.55rem;padding:.55rem .72rem;border:1.5px solid var(--borde);border-radius:9px;cursor:pointer;font-size:13px;transition:all .15s}
+.ro:hover{border-color:var(--vm);background:var(--crema)}
+.ro input{accent-color:var(--vino)}
+.sbx{background:rgba(42,122,75,.07);border:1px solid rgba(42,122,75,.2);border-radius:12px;padding:1.35rem;text-align:center}
+.sbx h3{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;color:#1A5430;margin-bottom:.4rem}
+.sbx p{font-size:13px;color:#2A7A4B;line-height:1.75}
 
-/* ── MODAL COMITÉ ── */
-.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .2s}
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--blanco);border-radius:18px;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;position:relative}
-.modal-header{background:var(--vino);padding:1.5rem 1.5rem 1.2rem;border-radius:18px 18px 0 0;position:sticky;top:0;z-index:1}
-.modal-header h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--blanco)}
-.modal-header p{font-size:12px;color:rgba(255,255,255,.65);margin-top:.2rem}
-.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;color:var(--blanco);font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.modal-close:hover{background:rgba(255,255,255,.3)}
-.modal-body{padding:1.5rem}
-.modal-section{margin-bottom:1.4rem}
-.modal-section h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--naranja);margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid var(--crema-dark)}
-.members-list{display:flex;flex-direction:column;gap:.5rem}
-.member-row{display:flex;align-items:center;gap:10px;padding:.55rem .7rem;background:var(--crema);border-radius:8px}
-.member-role{font-size:10px;font-weight:600;color:var(--vino);text-transform:uppercase;letter-spacing:.06em;min-width:90px}
-.member-name{font-size:13.5px;color:#2C1810}
-.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.doc-item{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border:1px solid var(--gris-borde);border-radius:9px;cursor:pointer;transition:background .15s,border-color .2s;text-decoration:none;color:inherit}
-.doc-item:hover{background:var(--crema);border-color:var(--vino-mid)}
-.doc-item svg{width:28px;height:28px;stroke:var(--vino-mid);fill:none;stroke-width:1.5;flex-shrink:0}
-.doc-item.missing svg{stroke:var(--gris-borde)}
-.doc-item span{font-size:12px;font-weight:500;color:#3C2010}
-.doc-item.missing span{color:#BBB}
-.info-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--crema-dark);font-size:13px}
-.info-row:last-child{border-bottom:none}
-.info-key{color:var(--gris-texto);font-weight:500}
-.info-val{color:#2C1810;font-weight:600}
+/* DOC VIEWER */
+.dov{position:fixed;inset:0;z-index:2100;background:rgba(15,4,10,.78);display:flex;align-items:center;justify-content:center;padding:1.2rem;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(5px)}
+.dov.open{opacity:1;pointer-events:all}
+.dvi{background:var(--blanco);border-radius:15px;width:100%;max-width:800px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
+.dvh{background:var(--vd);padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.dvh span{font-size:13.5px;font-weight:600;color:var(--blanco)}
+.dvc{background:rgba(255,255,255,.14);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;color:var(--blanco);font-size:16px;display:flex;align-items:center;justify-content:center}
+.dvb{flex:1;overflow:hidden;min-height:300px}
+.dvb iframe,.dvb img{width:100%;height:100%;border:none;object-fit:contain}
+.dvph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:300px;gap:.8rem;color:var(--gris);text-align:center;padding:2rem}
+.dvph svg{width:46px;height:46px;stroke:var(--borde);fill:none;stroke-width:1.5}
+.upa{border:2px dashed var(--borde);border-radius:10px;padding:1rem 2rem;position:relative;cursor:pointer;transition:all .2s;text-align:center;margin-top:.65rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.upa:hover{border-color:var(--vm);background:var(--crema)}
+.upa input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upa span{font-size:13px;color:var(--vino);font-weight:600}
+.upa svg{width:18px;height:18px;stroke:var(--vino);fill:none;stroke-width:2}
 
-/* ── ADMIN PANEL ── */
-#admin-view{display:none}
-.admin-header{background:var(--vino-dark);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between}
-.admin-header h1{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--blanco)}
-.admin-header p{font-size:12px;color:rgba(255,255,255,.5);margin-top:.1rem}
-.admin-body{max-width:1100px;margin:0 auto;padding:2rem}
-.admin-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap;gap:.75rem}
-.admin-toolbar h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--vino-dark)}
-.btn-new{background:var(--naranja);color:var(--blanco);border:none;border-radius:24px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:6px}
-.btn-new:hover{background:var(--naranja-light)}
-.admin-table{width:100%;border-collapse:collapse;background:var(--blanco);border-radius:14px;overflow:hidden;border:1px solid var(--gris-borde)}
-.admin-table th{background:var(--crema);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gris-texto);padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--gris-borde)}
-.admin-table td{padding:.75rem 1rem;font-size:13px;border-bottom:1px solid var(--crema-dark);vertical-align:middle}
-.admin-table tr:last-child td{border-bottom:none}
-.admin-table tr:hover td{background:var(--crema)}
-.tbl-btn{border:none;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
-.tbl-edit{background:#EDE4D7;color:var(--vino-dark)}
-.tbl-docs{background:rgba(232,130,26,.12);color:#7A4A0A}
-.tbl-del{background:rgba(192,57,43,.1);color:#8B2020}
-.tbl-btn:hover{opacity:.8}
-.doc-count{font-size:11px;background:var(--vino);color:var(--blanco);padding:2px 7px;border-radius:10px}
+/* ADMIN */
+.ah{background:linear-gradient(135deg,var(--vd),#4A1525);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.ah h1{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;color:var(--blanco)}
+.ah p{font-size:11px;color:rgba(255,255,255,.42);margin-top:.12rem}
+.ab{max-width:1140px;margin:0 auto;padding:1.8rem 3rem}
+.asts{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.4rem}
+.ast{background:var(--blanco);border:1.5px solid var(--borde);border-radius:13px;padding:.9rem;position:relative;overflow:hidden}
+.ast::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fucsia),var(--naranja))}
+.astl{font-size:9.5px;color:var(--gris);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.22rem;font-weight:500}
+.astv{font-family:'Playfair Display',Georgia,serif;font-size:1.7rem;font-weight:700;color:var(--vino)}
+.btr{height:5px;background:var(--c2);border-radius:3px;overflow:hidden;margin-top:.25rem}
+.btf{height:100%;background:linear-gradient(90deg,var(--fucsia),var(--naranja));border-radius:3px;transition:width .5s}
+.atabs{display:flex;gap:.55rem;margin-bottom:1.1rem}
+.atab{background:var(--crema);color:var(--gris);border:1.5px solid var(--borde);border-radius:22px;padding:8px 18px;font-size:12.5px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .2s}
+.atab.on{background:var(--vino);color:var(--blanco);border-color:var(--vino)}
+.atbh{display:flex;align-items:center;justify-content:space-between;margin-bottom:.95rem;flex-wrap:wrap;gap:.5rem}
+.atbh h2{font-family:'Playfair Display',Georgia,serif;font-size:1.25rem;color:var(--vd)}
+table{width:100%;border-collapse:collapse;background:var(--blanco);border-radius:13px;overflow:hidden;border:1.5px solid var(--borde)}
+table th{background:var(--crema);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gris);padding:.62rem .9rem;text-align:left;border-bottom:1.5px solid var(--borde)}
+table td{padding:.65rem .9rem;border-bottom:1px solid var(--c2);vertical-align:middle;font-size:13px}
+table tr:last-child td{border-bottom:none}
+table tr:hover td{background:var(--crema)}
+.tb{border:none;border-radius:7px;padding:5px 11px;font-size:11.5px;font-weight:500;cursor:pointer;font-family:inherit;margin-right:3px;transition:opacity .2s}
+.tb:hover{opacity:.78}
+.te{background:var(--c2);color:var(--vd)}.tdel{background:rgba(192,57,43,.1);color:#8B2020}
+.tg{background:rgba(42,122,75,.11);color:#1A5430}.tv{background:rgba(92,26,46,.1);color:var(--vino)}
+.rbdg{font-size:10px;padding:3px 10px;border-radius:10px;font-weight:600}
+.rp{background:rgba(232,130,26,.15);color:#7A4A0A}
+.rr{background:rgba(42,122,75,.15);color:#1A5430}
+.rc{background:rgba(92,26,46,.12);color:var(--vino)}
+.rev{background:rgba(59,130,246,.12);color:#1E40AF}
 
-/* ── LOGIN ── */
-#login-view{display:none;min-height:100vh;background:linear-gradient(135deg,var(--vino-dark),var(--vino));align-items:center;justify-content:center}
-.login-card{background:var(--blanco);border-radius:18px;padding:2.5rem;width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.login-card h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--vino-dark);margin-bottom:.3rem;text-align:center}
-.login-card p{font-size:13px;color:var(--gris-texto);text-align:center;margin-bottom:1.8rem}
-.form-field{margin-bottom:1rem}
-.form-field label{display:block;font-size:12px;font-weight:600;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
-.form-field input{width:100%;border:1.5px solid var(--gris-borde);border-radius:9px;padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
-.form-field input:focus{border-color:var(--vino)}
-.login-error{font-size:12px;color:var(--rojo);text-align:center;margin-bottom:.8rem;min-height:18px}
-.btn-login{width:100%;background:var(--vino);color:var(--blanco);border:none;border-radius:28px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
-.btn-login:hover{background:var(--vino-mid)}
+/* LOGIN */
+.lw{min-height:calc(100vh - 60px);background:linear-gradient(135deg,var(--vd),#5C1A2E);display:flex;align-items:center;justify-content:center;padding:2rem}
+.lc{background:var(--blanco);border-radius:18px;padding:2.4rem;width:350px;box-shadow:0 22px 65px rgba(0,0,0,.35)}
+.lc h2{font-family:'Playfair Display',Georgia,serif;font-size:1.45rem;color:var(--vd);text-align:center;margin-bottom:.25rem}
+.lc p{font-size:12.5px;color:var(--gris);text-align:center;margin-bottom:1.6rem}
+.lf{margin-bottom:.85rem}
+.lf label{display:block;font-size:9.5px;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.28rem}
+.lf input{width:100%;border:1.5px solid var(--borde);border-radius:9px;padding:10px 12px;font-size:13.5px;font-family:inherit;outline:none;transition:border-color .2s}
+.lf input:focus{border-color:var(--vino)}
+.lerr{font-size:11.5px;color:#C0392B;text-align:center;min-height:16px;margin-bottom:.5rem}
+.blo{width:100%;background:var(--vino);color:var(--blanco);border:none;border-radius:24px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .2s}
+.blo:hover{background:var(--vm)}
 
-/* ── MODAL FORM ── */
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
-.form-row.full{grid-template-columns:1fr}
-.form-group label{display:block;font-size:11px;font-weight:600;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;border:1.5px solid var(--gris-borde);border-radius:9px;padding:9px 11px;font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;background:var(--blanco)}
-.form-group input:focus,.form-group select:focus{border-color:var(--vino-mid)}
-.modal-actions{display:flex;gap:.6rem;justify-content:flex-end;padding-top:.8rem;border-top:1px solid var(--crema-dark);margin-top:.5rem}
-.btn-cancel{background:var(--crema);color:var(--gris-texto);border:none;border-radius:20px;padding:9px 20px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif}
-.btn-save{background:var(--naranja);color:var(--blanco);border:none;border-radius:20px;padding:9px 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
-.btn-save:hover{background:var(--naranja-light)}
-.doc-upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.5rem}
-.doc-upload-item{border:1.5px dashed var(--gris-borde);border-radius:10px;padding:.8rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
-.doc-upload-item:hover{border-color:var(--vino-mid);background:var(--crema)}
-.doc-upload-item.uploaded{border-color:var(--verde);border-style:solid;background:rgba(42,122,75,.05)}
-.doc-upload-item input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.doc-upload-item svg{width:22px;height:22px;stroke:var(--gris-borde);fill:none;stroke-width:1.5;margin-bottom:.3rem}
-.doc-upload-item.uploaded svg{stroke:var(--verde)}
-.doc-upload-item span{display:block;font-size:11px;color:var(--gris-texto)}
-.doc-upload-item.uploaded span{color:var(--verde);font-weight:500}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--vino-dark);color:var(--blanco);padding:10px 22px;border-radius:24px;font-size:13px;z-index:9999;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none}
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(8px);background:var(--vd);color:var(--blanco);padding:10px 22px;border-radius:24px;font-size:13px;z-index:3000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 18px rgba(0,0,0,.28)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* Responsive */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:2rem}
-  .hero-stats-card{display:none}
-  .map-container{grid-template-columns:1fr}
-  .program-inner{grid-template-columns:1fr}
-  .docs-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-}
+/* Leaflet */
+.leaflet-popup-content-wrapper{border-radius:12px!important;box-shadow:0 6px 28px rgba(92,26,46,.22)!important}
+.leaflet-popup-content{margin:13px 17px!important;font-family:'Inter',system-ui,sans-serif!important}
+.leaflet-tooltip{font-family:'Inter',system-ui,sans-serif!important;font-size:12px!important;font-weight:500!important;color:#3D1020!important;background:rgba(255,255,255,.95)!important;border:1px solid #D8CFC4!important;border-radius:6px!important;padding:4px 9px!important}
 
-/* Leaflet overrides */
-.leaflet-popup-content-wrapper{border-radius:12px!important;box-shadow:0 4px 20px rgba(92,26,46,.2)!important}
-.leaflet-popup-content{margin:12px 16px!important;font-family:'Inter',sans-serif!important}
-.popup-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--vino-dark);margin-bottom:.3rem}
-.popup-sub{font-size:12px;color:var(--gris-texto);margin-bottom:.5rem}
-.popup-btn{background:var(--vino);color:var(--blanco);border:none;border-radius:16px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;margin-top:.4rem}
+/* MOBILE */
+@media(max-width:760px){
+  #topnav{padding:0 1.2rem;height:54px}
+  .nt span{display:none}
+  .nl a{display:none}
+  .nadm{padding:7px 14px;font-size:12px}
+  .hero{grid-template-columns:1fr;padding:2.2rem 1.6rem 3.8rem;gap:2rem}
+  .htitle{font-size:2.2rem}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .sec,.lsec{padding-left:1.2rem;padding-right:1.2rem}
+  .mlayout{grid-template-columns:1fr}
+  .fcard{position:static}
+  #map{height:340px}
+  .cgrid{grid-template-columns:1fr}
+  .psec{padding:2.6rem 1.6rem}
+  .pinner{grid-template-columns:1fr}
+  footer{padding:1.1rem 1.5rem;flex-direction:column}
+  .asts{grid-template-columns:1fr 1fr}
+  .ab,.ah{padding-left:1.2rem;padding-right:1.2rem}
+  .dgrid,.fr,.dug{grid-template-columns:1fr}
+  #fab{right:1rem;bottom:1rem;padding:11px 16px}
+  #fab .ftxt{font-size:11px}
+  .pop,.pop.wide{max-width:96%}
+}
 </style>
 </head>
 <body>
 
-<!-- LOGIN VIEW -->
-<div id="login-view">
-  <div class="login-card">
-    <div style="text-align:center;margin-bottom:1.2rem">
-      <div style="width:50px;height:50px;background:var(--vino);border-radius:12px;display:inline-flex;align-items:center;justify-content:center">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--naranja)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
-    </div>
-    <h2>Acceso Administrativo</h2>
-    <p>Secretaría de Bienestar de Sonora</p>
-    <div class="form-field">
-      <label>Usuario</label>
-      <input type="text" id="login-user" placeholder="usuario@bienestar.gob.mx">
-    </div>
-    <div class="form-field">
-      <label>Contraseña</label>
-      <input type="password" id="login-pass" placeholder="••••••••">
-    </div>
-    <div class="login-error" id="login-error"></div>
-    <button class="btn-login" onclick="doLogin()">Iniciar sesión</button>
-    <div style="text-align:center;margin-top:1rem"><button onclick="showPublic()" style="background:none;border:none;font-size:12px;color:var(--gris-texto);cursor:pointer;font-family:'Inter',sans-serif">← Volver al mapa público</button></div>
+<nav id="topnav">
+  <div class="nb">
+    <div class="ni"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="nt"><span>Gobierno de Sonora</span><strong>Secretaria de Bienestar de Sonora</strong></div>
   </div>
-</div>
-
-<!-- MAIN PUBLIC VIEW -->
-<div id="public-view">
-
-<!-- NAVBAR -->
-<nav>
-  <div class="nav-brand">
-    <div class="nav-icon">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    </div>
-    <div class="nav-title">
-      <span>Gobierno de Sonora</span>
-      <strong>Secretaría de Bienestar de Sonora</strong>
-    </div>
-  </div>
-  <div class="nav-links">
-    <a onclick="scrollTo('map-sec')">Mapa</a>
-    <a onclick="scrollTo('committees-sec')">Comités</a>
-    <a onclick="scrollTo('program-sec')">Programa</a>
-    <button class="btn-admin" onclick="showLogin()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      Administración
+  <div class="nl">
+    <a onclick="goTo('map-s')">Mapa</a>
+    <a onclick="goTo('list-s')">Comites</a>
+    <a onclick="goTo('prog-s')">Programa</a>
+    <button class="nadm" onclick="showV('login')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Administracion
     </button>
   </div>
 </nav>
 
-<!-- HERO -->
+<button id="fab" onclick="openM('rep-m')">
+  <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  <span class="ftxt">Contraloria Social - Reportar Irregularidad</span>
+</button>
+
+<div id="pub">
 <section class="hero">
+  <div class="hero-left">
+    <div class="htag"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Contraloria Social - Sonora 2025-2026</div>
+    <h1 class="htitle">Comites de<br><em>Contraloria Social</em><br>en Sonora.</h1>
+    <p class="hsub">Programa de <strong>Fortalecimiento Economico para Familias Vulnerables.</strong> Transparencia, participacion ciudadana y rendicion de cuentas, municipio por municipio.</p>
+    <div class="hctas">
+      <button class="bpri" onclick="goTo('map-s')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        Explorar el mapa
+      </button>
+      <button class="bout" onclick="goTo('prog-s')">
+        Conocer el programa
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
   <div>
-    <div class="hero-title">Comités de<br><em>Contraloría Social</em><br>en Sonora.</div>
-    <p class="hero-subtitle">Programa de <strong>Fortalecimiento Económico para Familias Vulnerables.</strong> Transparencia, participación ciudadana y rendición de cuentas, municipio por municipio.</p>
-    <div class="hero-ctas">
-      <button class="btn-primary" onclick="scrollTo('map-sec')">Explorar el mapa ↓</button>
-      <button class="btn-outline" onclick="scrollTo('program-sec')">Conocer el programa →</button>
+    <div class="scard">
+      <div class="scard-ttl">Indicadores Estatales</div>
+      <div class="sgrid">
+        <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="snum" id="sc">0</div><div class="slbl">Comites</div></div>
+        <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="snum" id="sm">0</div><div class="slbl">Municipios</div></div>
+        <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="snum" id="si">0</div><div class="slbl">Integrantes</div></div>
+        <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="snum" id="sf">0</div><div class="slbl">Familias</div></div>
+      </div>
     </div>
   </div>
-  <div class="hero-stats-card">
-    <h4>Indicadores Estatales</h4>
-    <div class="stats-grid" id="hero-stats">
-      <div class="stat-box">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <div class="stat-num" id="stat-comites">0</div>
-        <div class="stat-label">Comités Registrados</div>
-      </div>
-      <div class="stat-box">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <div class="stat-num" id="stat-municipios">0</div>
-        <div class="stat-label">Municipios</div>
-      </div>
-      <div class="stat-box">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        <div class="stat-num" id="stat-integrantes">0</div>
-        <div class="stat-label">Integrantes Activos</div>
-      </div>
-      <div class="stat-box">
-        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        <div class="stat-num" id="stat-familias">0</div>
-        <div class="stat-label">Familias Beneficiadas</div>
-      </div>
+  <div class="hero-arc"></div>
+</section>
+
+<section class="sec" id="map-s">
+  <div class="pill">Sonora - Territorio en participacion ciudadana</div>
+  <h2 class="stitle">Mapa interactivo de comites</h2>
+  <p class="ssub">Haz clic en cualquier marcador fucsia para ver la ficha completa del comite</p>
+  <div class="mlayout">
+    <div class="fcard">
+      <div class="fl">Filtros</div>
+      <div class="ft">Explora por territorio</div>
+      <div class="fg"><label>Busqueda</label><input type="text" id="fis" placeholder="Nombre o municipio..."></div>
+      <div class="fg"><label>Region</label><select id="fir"><option value="">Todas las regiones</option><option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option></select></div>
+      <div class="fg"><label>Municipio</label><select id="fim"><option value="">Todos los municipios</option></select></div>
+      <button class="fclear" onclick="clearF()">Limpiar filtros</button>
+      <div class="fcnt">Mostrando <strong id="fsh">0</strong> de <strong id="fto">0</strong> comites</div>
     </div>
+    <div id="map"><div id="map-fallback" style="display:flex;align-items:center;justify-content:center;height:100%;font-family:Inter,sans-serif;color:#6B5B50;font-size:13px;text-align:center;padding:1rem">Cargando mapa interactivo...<br><span style="font-size:11px;opacity:.7">Si este mensaje no desaparece, revisa la consola del navegador (F12)</span></div></div>
   </div>
 </section>
 
-<!-- MAP SECTION -->
-<section class="map-section" id="map-sec">
-  <div class="map-hint">Sonora, territorio en participación ciudadana</div>
-  <h2 class="map-section-title">Mapa Interactivo de Comités</h2>
-  <p class="map-section-subtitle">Haz clic en cualquier marcador para ver la información del comité</p>
-  <div class="map-container">
-    <div class="filters-card">
-      <div class="filters-label">Filtros</div>
-      <div class="filters-title">Explora por territorio</div>
-      <div class="filter-group">
-        <label>Búsqueda</label>
-        <input type="text" id="search-input" placeholder="Nombre o municipio...">
-      </div>
-      <div class="filter-group">
-        <label>Región</label>
-        <select id="region-filter">
-          <option value="">Todas las regiones</option>
-          <option value="Norte">Norte</option>
-          <option value="Centro">Centro</option>
-          <option value="Sur">Sur</option>
-          <option value="Sierra">Sierra</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Municipio</label>
-        <select id="mun-filter"><option value="">Todos los municipios</option></select>
-      </div>
-      <button class="filter-clear" onclick="clearFilters()">Limpiar filtros</button>
-      <div class="filter-count">Mostrando <strong id="shown-count">0</strong> de <strong id="total-count">0</strong> comités</div>
-    </div>
-    <div id="map"></div>
-  </div>
+<section class="lsec" id="list-s">
+  <div class="lhdr"><h2>Listado de comites</h2><span class="bdg" id="lbdg">0</span></div>
+  <p style="font-size:13px;color:var(--gris);margin-bottom:1.1rem">Informacion oficial de cada comite de contraloria social activo en Sonora</p>
+  <div class="cgrid" id="cgrid"></div>
 </section>
 
-<!-- COMMITTEES LIST -->
-<section class="committees-section" id="committees-sec">
-  <div class="section-header">
+<section class="psec" id="prog-s">
+  <div class="pinner">
     <div>
-      <h2>Listado de Comités <span class="badge-count" id="list-badge">0</span></h2>
-      <p style="font-size:13px;color:var(--gris-texto);margin-top:.2rem">Información oficial de cada comité de contraloría social activo</p>
+      <div class="plbl">Acerca del programa</div>
+      <h2 class="ptitle">Fortalecimiento Economico para Familias Vulnerables</h2>
+      <p class="ptext">Programa del Gobierno de Sonora que complementa los ingresos de familias en condicion de pobreza extrema mediante transferencias monetarias no condicionadas, permitiendoles cubrir sus necesidades basicas alimentarias y no alimentarias.</p>
+      <div style="margin:.5rem 0 .6rem"><span class="pamt">$2,500</span> <span style="font-size:12.5px;color:rgba(255,255,255,.44)">MXN por bimestre - 5 bimestres - 2026</span></div>
+      <p class="ptext" style="font-size:12.5px;color:rgba(255,255,255,.52)">Objetivo: <strong style="color:rgba(255,255,255,.82)">16,000 personas</strong> en condicion de pobreza en todo el estado de Sonora.</p>
+      <p class="pquote">"Este programa es publico, ajeno a cualquier partido politico, asociacion religiosa u organizacion de cualquier otra indole."</p>
     </div>
-  </div>
-  <div class="committees-grid" id="committees-grid"></div>
-</section>
-
-<!-- PROGRAM SECTION -->
-<section class="program-section" id="program-sec">
-  <div class="program-inner">
-    <div>
-      <div class="program-label">Acerca del programa</div>
-      <h2 class="program-title">Fortalecimiento Económico para Familias Vulnerables</h2>
-      <p class="program-text">Programa del Gobierno de Sonora que contribuye a complementar los ingresos de familias en condición de pobreza extrema mediante transferencias monetarias no condicionadas, permitiéndoles cubrir sus necesidades básicas alimentarias y no alimentarias.</p>
-      <div style="margin-bottom:1.2rem">
-        <div class="program-amount">$2,500</div>
-        <div class="program-amount-label">por bimestre por familia beneficiaria (5 bimestres, 2026)</div>
-      </div>
-      <p class="program-text">Población objetivo: <strong style="color:var(--blanco)">16,000 personas</strong> en condiciones de pobreza y pobreza extrema por ingreso en todo el estado de Sonora.</p>
-      <p class="program-text" style="font-size:12px;background:rgba(255,255,255,.07);border-left:3px solid var(--naranja);padding:.6rem .8rem;border-radius:0 6px 6px 0;margin-top:.8rem">"Este programa es público y su ejecución no depende de partidos políticos, asociaciones religiosas u organizaciones de cualquier otra índole."</p>
-    </div>
-    <div class="cs-card">
-      <h3>¿Por qué son importantes los Comités de Contraloría Social?</h3>
-      <ul class="cs-list">
+    <div class="cscard">
+      <h3>Por que son clave los comites de contraloria social?</h3>
+      <ul class="cslist">
         <li>Vigilan que los recursos lleguen correctamente a las familias beneficiarias</li>
         <li>Verifican la calidad y oportunidad de los apoyos entregados</li>
         <li>Reciben y canalizan peticiones ciudadanas de la comunidad</li>
         <li>Elaboran y presentan informes de resultados ante las autoridades</li>
-        <li>Garantizan la transparencia y rendición de cuentas del programa</li>
-        <li>Promueven la participación activa de la ciudadanía en la gestión pública</li>
-        <li>Son el primer nivel de supervisión del programa por y para la comunidad</li>
+        <li>Garantizan la transparencia y rendicion de cuentas del programa</li>
+        <li>Promueven la participacion activa de la ciudadania en la gestion publica</li>
+        <li>Son el primer nivel de supervision: por y para la comunidad</li>
       </ul>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>© 2026 Secretaría de Bienestar del Estado de Sonora · Dirección de Participación Ciudadana</span>
-  <span>bienestar@sonora.gob.mx · (662) 108 3737</span>
+  <div class="flogo"><div class="ni"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span>Secretaria de Bienestar - Gobierno de Sonora</span></div>
+  <span>bienestar@sonora.gob.mx - (662) 108-3737</span>
+  <span>(c) 2026 Direccion de Participacion Ciudadana</span>
 </footer>
-
-<!-- FAB -->
-<button class="fab">
-  <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-  Contraloría Social · Reportar Irregularidad
-</button>
-
-</div><!-- /public-view -->
-
-<!-- ADMIN VIEW -->
-<div id="admin-view">
-  <div class="admin-header">
-    <div>
-      <h1>Panel de Administración</h1>
-      <p>Secretaría de Bienestar de Sonora · Contraloría Social</p>
-    </div>
-    <div style="display:flex;gap:.6rem">
-      <button class="btn-outline" onclick="showPublic()" style="font-family:'Inter',sans-serif;font-size:13px">← Ver mapa público</button>
-      <button class="btn-outline" onclick="logout()" style="font-family:'Inter',sans-serif;font-size:13px">Cerrar sesión</button>
-    </div>
-  </div>
-
-  <div class="admin-body">
-    <!-- Stats row -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:2rem">
-      <div style="background:var(--blanco);border:1px solid var(--gris-borde);border-radius:12px;padding:1rem">
-        <div style="font-size:10px;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem">Total Comités</div>
-        <div style="font-size:2rem;font-weight:700;color:var(--vino)" id="adm-stat-comites">0</div>
-      </div>
-      <div style="background:var(--blanco);border:1px solid var(--gris-borde);border-radius:12px;padding:1rem">
-        <div style="font-size:10px;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem">Municipios</div>
-        <div style="font-size:2rem;font-weight:700;color:var(--vino)" id="adm-stat-mun">0</div>
-      </div>
-      <div style="background:var(--blanco);border:1px solid var(--gris-borde);border-radius:12px;padding:1rem">
-        <div style="font-size:10px;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem">Integrantes</div>
-        <div style="font-size:2rem;font-weight:700;color:var(--vino)" id="adm-stat-int">0</div>
-      </div>
-      <div style="background:var(--blanco);border:1px solid var(--gris-borde);border-radius:12px;padding:1rem">
-        <div style="font-size:10px;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem">Meta (35 comités)</div>
-        <div style="font-size:2rem;font-weight:700;color:var(--naranja)" id="adm-stat-pct">0%</div>
-      </div>
-    </div>
-
-    <div class="admin-toolbar">
-      <h2>Comités registrados</h2>
-      <button class="btn-new" onclick="openNewCommittee()">+ Registrar nuevo comité</button>
-    </div>
-
-    <table class="admin-table" id="admin-table">
-      <thead>
-        <tr>
-          <th>#</th><th>Municipio</th><th>Región</th><th>Fecha</th>
-          <th>Presidente/a</th><th>Integrantes</th><th>Documentos</th><th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="admin-tbody"></tbody>
-    </table>
-  </div>
 </div>
 
-<!-- COMMITTEE DETAIL MODAL -->
-<div class="modal-overlay" id="detail-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <h2 id="dm-title">Comité</h2>
-      <p id="dm-sub">Contraloría Social · Programa FEFV</p>
-      <button class="modal-close" onclick="closeModal('detail-modal')">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-section">
-        <h4>Información General</h4>
-        <div id="dm-info"></div>
-      </div>
-      <div class="modal-section">
-        <h4>Integrantes del Comité</h4>
-        <div class="members-list" id="dm-members"></div>
-      </div>
-      <div class="modal-section">
-        <h4>Documentos Normativos</h4>
-        <div class="docs-grid" id="dm-docs"></div>
-      </div>
+<div id="login" style="display:none">
+  <div class="lw">
+    <div class="lc">
+      <div style="text-align:center;margin-bottom:1.1rem"><div style="width:46px;height:46px;background:var(--vino);border-radius:11px;display:inline-flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--naranja)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div></div>
+      <h2>Acceso Administrativo</h2><p>Secretaria de Bienestar de Sonora</p>
+      <div class="lf"><label>Usuario</label><input type="text" id="lu" placeholder="admin"></div>
+      <div class="lf"><label>Contrasena</label><input type="password" id="lp" placeholder="bienestar2026" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="lerr" id="lerr"></div>
+      <button class="blo" onclick="doLogin()">Iniciar sesion</button>
+      <div style="text-align:center;margin-top:1rem"><button onclick="showV('pub')" style="background:none;border:none;font-size:12px;color:var(--gris);cursor:pointer;font-family:inherit">Volver al mapa publico</button></div>
     </div>
   </div>
 </div>
 
-<!-- NEW/EDIT COMMITTEE MODAL -->
-<div class="modal-overlay" id="form-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <h2 id="fm-title">Registrar Comité</h2>
-      <p>Contraloría Social · Secretaría de Bienestar</p>
-      <button class="modal-close" onclick="closeModal('form-modal')">×</button>
+<div id="adm" style="display:none">
+  <div class="ah">
+    <div><h1>Panel de Administracion</h1><p>Secretaria de Bienestar - Direccion de Participacion Ciudadana</p></div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button class="bout" style="font-family:inherit;font-size:12px;padding:8px 15px;color:var(--vd);border-color:rgba(92,26,46,.25)" onclick="showV('pub')">Mapa publico</button>
+      <button class="bout" style="font-family:inherit;font-size:12px;padding:8px 15px;color:var(--vd);border-color:rgba(92,26,46,.25)" onclick="showV('login')">Cerrar sesion</button>
     </div>
-    <div class="modal-body">
-      <input type="hidden" id="fm-id">
-
-      <div class="modal-section">
-        <h4>Datos del municipio</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Municipio *</label>
-            <input type="text" id="fm-municipio" placeholder="Ej. Hermosillo">
-          </div>
-          <div class="form-group">
-            <label>Región *</label>
-            <select id="fm-region">
-              <option value="">Seleccionar...</option>
-              <option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Fecha de constitución *</label>
-            <input type="date" id="fm-fecha">
-          </div>
-          <div class="form-group">
-            <label>Número de beneficiarios</label>
-            <input type="number" id="fm-beneficiarios" placeholder="Ej. 45">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Latitud</label>
-            <input type="number" id="fm-lat" step="0.0001" placeholder="Ej. 29.0729">
-          </div>
-          <div class="form-group">
-            <label>Longitud</label>
-            <input type="number" id="fm-lng" step="0.0001" placeholder="Ej. -110.9559">
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Integrantes del Comité</h4>
-        <div id="fm-members-fields"></div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Documentos Normativos</h4>
-        <div class="doc-upload-grid" id="fm-docs-fields"></div>
-      </div>
-
-      <div class="modal-actions">
-        <button class="btn-cancel" onclick="closeModal('form-modal')">Cancelar</button>
-        <button class="btn-save" onclick="saveCommittee()">Guardar comité</button>
-      </div>
+  </div>
+  <div class="ab">
+    <div class="asts">
+      <div class="ast"><div class="astl">Total Comites</div><div class="astv" id="ac">0</div><div class="btr"><div class="btf" id="abf" style="width:0%"></div></div></div>
+      <div class="ast"><div class="astl">Municipios Cubiertos</div><div class="astv" id="am">0</div></div>
+      <div class="ast"><div class="astl">Integrantes Activos</div><div class="astv" id="ai">0</div></div>
+      <div class="ast"><div class="astl">Meta 35 comites</div><div class="astv" style="color:var(--naranja)" id="ap">0%</div></div>
+    </div>
+    <div class="atabs">
+      <button class="atab on" id="tabc" onclick="swTab('c')">Comites registrados</button>
+      <button class="atab" id="tabr" onclick="swTab('r')">Reportes ciudadanos <span id="rbcnt" style="background:var(--fucsia);color:#fff;font-size:10px;padding:1px 7px;border-radius:8px;margin-left:4px;font-weight:700">0</span></button>
+    </div>
+    <div id="tc">
+      <div class="atbh"><h2>Comites registrados</h2><button class="bpri" onclick="openNew()" style="padding:9px 18px;font-size:13px">+ Nuevo comite</button></div>
+      <table><thead><tr><th>#</th><th>Municipio</th><th>Region</th><th>Fecha</th><th>Presidente/a</th><th>Docs</th><th>Acciones</th></tr></thead><tbody id="atb"></tbody></table>
+    </div>
+    <div id="tr2" style="display:none">
+      <div class="atbh"><h2>Reportes ciudadanos</h2><span style="font-size:12.5px;color:var(--gris)">Gestiona y da seguimiento a cada reporte</span></div>
+      <table><thead><tr><th>#</th><th>Folio</th><th>Tipo</th><th>Municipio</th><th>Fecha</th><th>Estado</th><th>Evidencia</th><th>Acciones</th></tr></thead><tbody id="rtb"></tbody></table>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
+<div class="ov" id="det-m">
+  <div class="pop">
+    <div class="ph a"><h2 id="dmt">Comite</h2><p id="dms">Contraloria Social</p><button class="pclose" onclick="closeM('det-m')">x</button></div>
+    <div class="pb">
+      <div class="ms"><h4>Informacion general</h4><div id="dmi"></div></div>
+      <div class="ms"><h4>Integrantes del comite</h4><div class="mlist" id="dmm"></div></div>
+      <div class="ms"><h4>Documentos normativos</h4><div class="dgrid" id="dmd"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="form-m">
+  <div class="pop">
+    <div class="ph a"><h2 id="fmt">Registrar comite</h2><p>Secretaria de Bienestar - Contraloria Social</p><button class="pclose" onclick="closeM('form-m')">x</button></div>
+    <div class="pb">
+      <input type="hidden" id="fmid">
+      <div class="ms"><h4>Datos del municipio</h4>
+        <div class="fr"><div class="fg2"><label>Municipio *</label><input type="text" id="fmun" placeholder="Ej. Hermosillo"></div><div class="fg2"><label>Region *</label><select id="freg"><option value="">Seleccionar...</option><option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option></select></div></div>
+        <div class="fr"><div class="fg2"><label>Fecha constitucion *</label><input type="date" id="ffec"></div><div class="fg2"><label>Num. beneficiarios</label><input type="number" id="fben" placeholder="45"></div></div>
+        <div class="fr"><div class="fg2"><label>Latitud</label><input type="number" id="flat" step="0.0001" placeholder="29.0729"></div><div class="fg2"><label>Longitud</label><input type="number" id="flng" step="0.0001" placeholder="-110.9559"></div></div>
+      </div>
+      <div class="ms"><h4>Integrantes del comite</h4><div id="fmems"></div></div>
+      <div class="ms"><h4>Documentos normativos</h4><div class="dug" id="fdocs"></div></div>
+      <div class="mact"><button class="bcan" onclick="closeM('form-m')">Cancelar</button><button class="bsv" onclick="saveC()">Guardar comite</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="rep-m">
+  <div class="pop">
+    <div class="ph b"><h2>Reportar irregularidad</h2><p>Contraloria Social - Canal ciudadano confidencial - Programa FEFV</p><button class="pclose" onclick="closeM('rep-m')">x</button></div>
+    <div class="pb"><div id="rep-cnt">
+      <div style="background:rgba(92,26,46,.05);border-left:3px solid var(--fucsia);border-radius:0 7px 7px 0;padding:.65rem .85rem;margin-bottom:1.15rem;font-size:13px;color:var(--gris);line-height:1.65">Tu reporte es <strong style="color:var(--vd)">estrictamente confidencial</strong> y sera atendido en maximo <strong style="color:var(--vd)">5 dias habiles</strong>.</div>
+      <div class="ms"><h4>Tipo de irregularidad *</h4>
+        <div class="rg">
+          <label class="ro"><input type="radio" name="tipo" value="Desvio de recursos"> Desvio o mal uso de recursos del programa</label>
+          <label class="ro"><input type="radio" name="tipo" value="Exclusion injustificada"> Exclusion injustificada de beneficiarios</label>
+          <label class="ro"><input type="radio" name="tipo" value="Uso politico"> Uso politico del programa</label>
+          <label class="ro"><input type="radio" name="tipo" value="Cobro indebido"> Cobro indebido a beneficiarios</label>
+          <label class="ro"><input type="radio" name="tipo" value="Trato inadecuado"> Trato inadecuado del personal</label>
+          <label class="ro"><input type="radio" name="tipo" value="Otro"> Otro tipo de irregularidad</label>
+        </div>
+      </div>
+      <div class="fr"><div class="fg2"><label>Municipio</label><select id="rmun"><option value="">Seleccionar...</option></select></div><div class="fg2"><label>Fecha del hecho</label><input type="date" id="rfec"></div></div>
+      <div class="fr full"><div class="fg2"><label>Descripcion detallada *</label><textarea id="rdesc" rows="4" placeholder="Describe con detalle lo que ocurrio..."></textarea></div></div>
+      <div class="fr"><div class="fg2"><label>Tu nombre (opcional)</label><input type="text" id="rnomb" placeholder="Anonimo si prefieres"></div><div class="fg2"><label>Contacto (opcional)</label><input type="text" id="rcont" placeholder="Telefono o correo"></div></div>
+      <div class="mact"><button class="bcan" onclick="closeM('rep-m')">Cancelar</button><button class="bsv" onclick="subRep()">Enviar reporte</button></div>
+    </div></div>
+  </div>
+</div>
+
+<div class="ov" id="repd-m">
+  <div class="pop wide">
+    <div class="ph b"><h2 id="rdmt">Reporte ciudadano</h2><p id="rdms">Contraloria Social - Seguimiento</p><button class="pclose" onclick="closeM('repd-m')">x</button></div>
+    <div class="pb">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.3rem">
+        <div>
+          <div class="ms"><h4>Informacion del reporte</h4><div id="rdmi"></div></div>
+          <div class="ms"><h4>Descripcion del ciudadano</h4><div id="rdmdesc" style="font-size:13.5px;line-height:1.7;color:#2C1810;background:var(--crema);border-radius:9px;padding:.85rem;border-left:3px solid var(--fucsia)"></div></div>
+        </div>
+        <div>
+          <div class="ms"><h4>Estado y seguimiento</h4>
+            <div class="fg2" style="margin-bottom:.65rem"><label>Estado del reporte</label><select id="rdmst"><option value="Pendiente">Pendiente</option><option value="En revision">En revision</option><option value="Atendido">Atendido</option><option value="Cerrado">Cerrado</option></select></div>
+            <div class="fg2" style="margin-bottom:.65rem"><label>Responsable asignado</label><input type="text" id="rdmrsp" placeholder="Nombre del funcionario responsable"></div>
+            <div class="fg2"><label>Notas de seguimiento</label><textarea id="rdmnot" rows="4" placeholder="Acciones tomadas, observaciones..."></textarea></div>
+          </div>
+          <div class="ms"><h4>Evidencia documental</h4>
+            <div id="rdmdocs"></div>
+            <div class="upa"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple onchange="addEv(this)"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Agregar evidencia (PDF, imagen o documento)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mact"><button class="bcan" onclick="closeM('repd-m')">Cancelar</button><button class="bsv" onclick="saveRep()">Guardar seguimiento</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="dov" id="dv">
+  <div class="dvi">
+    <div class="dvh"><span id="dvt">Documento</span><button class="dvc" onclick="closeM('dv')">x</button></div>
+    <div class="dvb" id="dvb"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" onerror="var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js';s.onload=function(){if(typeof showV==='function')showV(document.getElementById('adm').style.display==='none'&&document.getElementById('login').style.display==='none'?'pub':'pub');};document.head.appendChild(s);"></script>
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────
-const DOC_TYPES = ['Acta Constitutiva','Lista de Asistencia','Formato Petición Ciudadana','Solicitud de Información','Ficha Técnica','Minuta de Reunión'];
-const ROLES = ['Presidente/a','Secretario/a','Vocal 1','Vocal 2','Vocal 3','Vocal 4','Vocal 5'];
+const ROLES=['Presidente/a','Secretario/a','Vocal 1','Vocal 2','Vocal 3','Vocal 4','Vocal 5'];
+const DK=['acta','asistencia','peticion','solicitud','ficha','minuta'];
+const DL={acta:'Acta Constitutiva',asistencia:'Lista de Asistencia',peticion:'Peticion Ciudadana',solicitud:'Solicitud de Informacion',ficha:'Ficha Tecnica',minuta:'Minuta de Reunion'};
+const CRD={Hermosillo:[29.0729,-110.9559],Navojoa:[27.073,-109.4411],Huatabampo:[26.8286,-109.6369],Etchojoa:[26.9067,-109.6436],Quiriego:[27.4894,-109.2361],Bacanora:[29.1996,-109.3994],'San Pedro de la Cueva':[29.2909,-109.7564],Bacoachi:[30.6072,-109.9686],Aconchi:[29.8334,-110.2271],Arizpe:[30.3333,-110.1667],'Banamichi':[29.9833,-110.2167],'Baviacora':[29.7014,-110.1653],'Huepac':[29.9031,-110.2289]};
 
-const COORDS = {
-  'Hermosillo':[29.0729,-110.9559],'Navojoa':[27.0730,-109.4411],
-  'Huatabampo':[26.8286,-109.6369],'Etchojoa':[26.9067,-109.6436],
-  'Quiriego':[27.4894,-109.2361],'Bacanora':[29.1996,-109.3994],
-  'San Pedro de la Cueva':[29.2909,-109.7564],'Bacoachi':[30.6072,-109.9686],
-  'Aconchi':[29.8334,-110.2271],'Arizpe':[30.3333,-110.1667],
-  'Banámichi':[29.9833,-110.2167],'Baviácora':[29.7014,-110.1653],
-  'Huépac':[29.9031,-110.2289]
-};
-
-const INITIAL = [
-  {id:1,municipio:'Hermosillo',region:'Centro',fecha:'2025-03-10',beneficiarios:312,lat:29.0729,lng:-110.9559,
-   integrantes:[{rol:'Presidente/a',nombre:'María Elena Ruiz Soto'},{rol:'Secretario/a',nombre:'Jorge Fuentes Medina'},{rol:'Vocal 1',nombre:'Ana López García'},{rol:'Vocal 2',nombre:'Carlos Mendoza Torres'},{rol:'Vocal 3',nombre:'Lucía Romero Díaz'},{rol:'Vocal 4',nombre:'Pedro Sánchez Vega'},{rol:'Vocal 5',nombre:'Rosa Trujillo Peña'}],
-   docs:{acta:true,asistencia:true,peticion:true,solicitud:true,ficha:true,minuta:true}},
-  {id:2,municipio:'Navojoa',region:'Sur',fecha:'2025-03-22',beneficiarios:89,lat:27.0730,lng:-109.4411,
-   integrantes:[{rol:'Presidente/a',nombre:'Gabriela Morales Ibarra'},{rol:'Secretario/a',nombre:'Tomás Espinoza Leyva'},{rol:'Vocal 1',nombre:'Elvira Castro Núñez'},{rol:'Vocal 2',nombre:'Ramón Flores Quiroz'},{rol:'Vocal 3',nombre:'Silvia Ojeda Bernal'},{rol:'Vocal 4',nombre:'Andrés Velarde Cota'},{rol:'Vocal 5',nombre:'Carmen Bojórquez Ruiz'}],
-   docs:{acta:true,asistencia:true,peticion:false,solicitud:true,ficha:true,minuta:false}},
-  {id:3,municipio:'Huatabampo',region:'Sur',fecha:'2025-04-05',beneficiarios:67,lat:26.8286,lng:-109.6369,
-   integrantes:[{rol:'Presidente/a',nombre:'Enrique Valenzuela Gaxiola'},{rol:'Secretario/a',nombre:'Patricia Acosta Millanes'},{rol:'Vocal 1',nombre:'Humberto León Salazar'},{rol:'Vocal 2',nombre:'Martha Parra Corrales'},{rol:'Vocal 3',nombre:'Isidro Cuen Félix'},{rol:'Vocal 4',nombre:'Verónica Zazueta Angulo'},{rol:'Vocal 5',nombre:'Miguel Leyva Bórquez'}],
-   docs:{acta:true,asistencia:true,peticion:true,solicitud:false,ficha:true,minuta:true}},
-  {id:4,municipio:'Etchojoa',region:'Sur',fecha:'2025-04-12',beneficiarios:54,lat:26.9067,lng:-109.6436,
-   integrantes:[{rol:'Presidente/a',nombre:'Rosario Buitimea Moroyoqui'},{rol:'Secretario/a',nombre:'Felipe Yocupicio Álvarez'},{rol:'Vocal 1',nombre:'Nadia Yépez Rojo'},{rol:'Vocal 2',nombre:'Orlando Meza Tehueco'},{rol:'Vocal 3',nombre:'Guadalupe Soto Avilés'},{rol:'Vocal 4',nombre:'Roberto Borbón Murrieta'},{rol:'Vocal 5',nombre:'Esperanza Cobos Valenzuela'}],
-   docs:{acta:true,asistencia:false,peticion:false,solicitud:false,ficha:true,minuta:false}},
-  {id:5,municipio:'Quiriego',region:'Sur',fecha:'2025-04-18',beneficiarios:33,lat:27.4894,lng:-109.2361,
-   integrantes:[{rol:'Presidente/a',nombre:'Lorena Celaya Aguilar'},{rol:'Secretario/a',nombre:'Abel Torres Rodríguez'},{rol:'Vocal 1',nombre:'Claudia Sauceda Meza'},{rol:'Vocal 2',nombre:'Ernesto Olea Parra'},{rol:'Vocal 3',nombre:'Yolanda Zayas Cruz'},{rol:'Vocal 4',nombre:'David Fontes García'},{rol:'Vocal 5',nombre:'Irene Palomares Buitimea'}],
-   docs:{acta:true,asistencia:true,peticion:true,solicitud:true,ficha:true,minuta:true}},
-  {id:6,municipio:'Bacanora',region:'Sierra',fecha:'2025-05-02',beneficiarios:28,lat:29.1996,lng:-109.3994,
-   integrantes:[{rol:'Presidente/a',nombre:'Salvador Quijada Arvayo'},{rol:'Secretario/a',nombre:'Alicia Durazo Mendívil'},{rol:'Vocal 1',nombre:'Ciro Borbón Robles'},{rol:'Vocal 2',nombre:'Francisca Badea Verdugo'},{rol:'Vocal 3',nombre:'Jesús Zazueta Quijada'},{rol:'Vocal 4',nombre:'Trinidad López Ochoa'},{rol:'Vocal 5',nombre:'Rigoberto Álvarez Caro'}],
-   docs:{acta:true,asistencia:true,peticion:false,solicitud:false,ficha:false,minuta:false}},
-  {id:7,municipio:'San Pedro de la Cueva',region:'Sierra',fecha:'2025-05-08',beneficiarios:26,lat:29.2909,lng:-109.7564,
-   integrantes:[{rol:'Presidente/a',nombre:'Concepción Valenzuela Manríquez'},{rol:'Secretario/a',nombre:'Benito Ruíz Celaya'},{rol:'Vocal 1',nombre:'Amalia Castro Gil'},{rol:'Vocal 2',nombre:'Fidel Moreno Soto'},{rol:'Vocal 3',nombre:'Dulce Corrales Montaño'},{rol:'Vocal 4',nombre:'Marco Arvizu Badea'},{rol:'Vocal 5',nombre:'Luz Salazar Orrantia'}],
-   docs:{acta:true,asistencia:true,peticion:true,solicitud:false,ficha:true,minuta:false}},
-  {id:8,municipio:'Bacoachi',region:'Norte',fecha:'2025-05-15',beneficiarios:29,lat:30.6072,lng:-109.9686,
-   integrantes:[{rol:'Presidente/a',nombre:'Fermín Grijalva Duarte'},{rol:'Secretario/a',nombre:'Sandra Mendoza Encinas'},{rol:'Vocal 1',nombre:'Alfredo Valenzuela Camou'},{rol:'Vocal 2',nombre:'Rosalba Ceballos Mañez'},{rol:'Vocal 3',nombre:'Luis Bernal Grijalva'},{rol:'Vocal 4',nombre:'Gloria Urrea Meza'},{rol:'Vocal 5',nombre:'Rene Borquez Torres'}],
-   docs:{acta:true,asistencia:false,peticion:false,solicitud:false,ficha:false,minuta:false}},
-  {id:9,municipio:'Aconchi',region:'Centro',fecha:'2025-05-20',beneficiarios:31,lat:29.8334,lng:-110.2271,
-   integrantes:[{rol:'Presidente/a',nombre:'Hortensia Soto Robles'},{rol:'Secretario/a',nombre:'Daniel Peralta Ramos'},{rol:'Vocal 1',nombre:'Cecilia Montaño Dorame'},{rol:'Vocal 2',nombre:'Oscar Ruiz Gálvez'},{rol:'Vocal 3',nombre:'Norma Lugo Contreras'},{rol:'Vocal 4',nombre:'Rafael Ortega Grijalva'},{rol:'Vocal 5',nombre:'Beatriz Salido Félix'}],
-   docs:{acta:true,asistencia:true,peticion:false,solicitud:true,ficha:true,minuta:true}},
-  {id:10,municipio:'Arizpe',region:'Norte',fecha:'2025-05-25',beneficiarios:27,lat:30.3333,lng:-110.1667,
-   integrantes:[{rol:'Presidente/a',nombre:'Edelmira Corral Robles'},{rol:'Secretario/a',nombre:'Ignacio Salazar Borbon'},{rol:'Vocal 1',nombre:'Sonia Campa Meza'},{rol:'Vocal 2',nombre:'Félix Grijalva Verdugo'},{rol:'Vocal 3',nombre:'Pilar Lugo Gil'},{rol:'Vocal 4',nombre:'Aurelio Celaya Bojórquez'},{rol:'Vocal 5',nombre:'Lidia Angulo Oroz'}],
-   docs:{acta:true,asistencia:true,peticion:true,solicitud:true,ficha:false,minuta:false}},
-  {id:11,municipio:'Banámichi',region:'Centro',fecha:'2025-06-01',beneficiarios:28,lat:29.9833,lng:-110.2167,
-   integrantes:[{rol:'Presidente/a',nombre:'Heriberto Camou Montaño'},{rol:'Secretario/a',nombre:'Ernestina Valenzuela Salazar'},{rol:'Vocal 1',nombre:'Vladimir Robles Meza'},{rol:'Vocal 2',nombre:'Antonia Bracamonte Ruiz'},{rol:'Vocal 3',nombre:'Néstor Encinas Badea'},{rol:'Vocal 4',nombre:'Consuelo Torres Salido'},{rol:'Vocal 5',nombre:'Margarita Zazueta Aragón'}],
-   docs:{acta:true,asistencia:true,peticion:false,solicitud:false,ficha:true,minuta:true}},
-  {id:12,municipio:'Baviácora',region:'Centro',fecha:'2025-06-05',beneficiarios:32,lat:29.7014,lng:-110.1653,
-   integrantes:[{rol:'Presidente/a',nombre:'Arcelia Bracamonte Valenzuela'},{rol:'Secretario/a',nombre:'Francisco Durazo Quiroz'},{rol:'Vocal 1',nombre:'Milagros Ochoa Robles'},{rol:'Vocal 2',nombre:'Josué Grijalva Encinas'},{rol:'Vocal 3',nombre:'Victoria Celaya Corrales'},{rol:'Vocal 4',nombre:'Genaro Angulo Bojórquez'},{rol:'Vocal 5',nombre:'Marisol Meza Bernal'}],
-   docs:{acta:true,asistencia:true,peticion:true,solicitud:true,ficha:true,minuta:false}},
-  {id:13,municipio:'Huépac',region:'Centro',fecha:'2025-06-10',beneficiarios:26,lat:29.9031,lng:-110.2289,
-   integrantes:[{rol:'Presidente/a',nombre:'Sebastián Moreno Dorame'},{rol:'Secretario/a',nombre:'Alondra Soto Camou'},{rol:'Vocal 1',nombre:'Camilo Bracamonte Gil'},{rol:'Vocal 2',nombre:'Rebeca Valenzuela Angulo'},{rol:'Vocal 3',nombre:'Hugo Celaya Meza'},{rol:'Vocal 4',nombre:'Piedad Meza Torres'},{rol:'Vocal 5',nombre:'Cristóbal Salazar Robles'}],
-   docs:{acta:true,asistencia:false,peticion:false,solicitud:false,ficha:false,minuta:false}},
+const INIT=[
+  {id:1,municipio:'Hermosillo',region:'Centro',fecha:'2025-03-10',beneficiarios:312,integrantes:[{rol:'Presidente/a',nombre:'Maria Elena Ruiz Soto'},{rol:'Secretario/a',nombre:'Jorge Fuentes Medina'},{rol:'Vocal 1',nombre:'Ana Lopez Garcia'},{rol:'Vocal 2',nombre:'Carlos Mendoza Torres'},{rol:'Vocal 3',nombre:'Lucia Romero Diaz'},{rol:'Vocal 4',nombre:'Pedro Sanchez Vega'},{rol:'Vocal 5',nombre:'Rosa Trujillo Pena'}],uploads:{}},
+  {id:2,municipio:'Navojoa',region:'Sur',fecha:'2025-03-22',beneficiarios:89,integrantes:[{rol:'Presidente/a',nombre:'Gabriela Morales Ibarra'},{rol:'Secretario/a',nombre:'Tomas Espinoza Leyva'},{rol:'Vocal 1',nombre:'Elvira Castro Nunez'},{rol:'Vocal 2',nombre:'Ramon Flores Quiroz'},{rol:'Vocal 3',nombre:'Silvia Ojeda Bernal'},{rol:'Vocal 4',nombre:'Andres Velarde Cota'},{rol:'Vocal 5',nombre:'Carmen Bojorquez Ruiz'}],uploads:{}},
+  {id:3,municipio:'Huatabampo',region:'Sur',fecha:'2025-04-05',beneficiarios:67,integrantes:[{rol:'Presidente/a',nombre:'Enrique Valenzuela Gaxiola'},{rol:'Secretario/a',nombre:'Patricia Acosta Millanes'},{rol:'Vocal 1',nombre:'Humberto Leon Salazar'},{rol:'Vocal 2',nombre:'Martha Parra Corrales'},{rol:'Vocal 3',nombre:'Isidro Cuen Felix'},{rol:'Vocal 4',nombre:'Veronica Zazueta Angulo'},{rol:'Vocal 5',nombre:'Miguel Leyva Borquez'}],uploads:{}},
+  {id:4,municipio:'Etchojoa',region:'Sur',fecha:'2025-04-12',beneficiarios:54,integrantes:[{rol:'Presidente/a',nombre:'Rosario Buitimea Moroyoqui'},{rol:'Secretario/a',nombre:'Felipe Yocupicio Alvarez'},{rol:'Vocal 1',nombre:'Nadia Yepez Rojo'},{rol:'Vocal 2',nombre:'Orlando Meza Tehueco'},{rol:'Vocal 3',nombre:'Guadalupe Soto Aviles'},{rol:'Vocal 4',nombre:'Roberto Borbon Murrieta'},{rol:'Vocal 5',nombre:'Esperanza Cobos Valenzuela'}],uploads:{}},
+  {id:5,municipio:'Quiriego',region:'Sur',fecha:'2025-04-18',beneficiarios:33,integrantes:[{rol:'Presidente/a',nombre:'Lorena Celaya Aguilar'},{rol:'Secretario/a',nombre:'Abel Torres Rodriguez'},{rol:'Vocal 1',nombre:'Claudia Sauceda Meza'},{rol:'Vocal 2',nombre:'Ernesto Olea Parra'},{rol:'Vocal 3',nombre:'Yolanda Zayas Cruz'},{rol:'Vocal 4',nombre:'David Fontes Garcia'},{rol:'Vocal 5',nombre:'Irene Palomares Buitimea'}],uploads:{}},
+  {id:6,municipio:'Bacanora',region:'Sierra',fecha:'2025-05-02',beneficiarios:28,integrantes:[{rol:'Presidente/a',nombre:'Salvador Quijada Arvayo'},{rol:'Secretario/a',nombre:'Alicia Durazo Mendivil'},{rol:'Vocal 1',nombre:'Ciro Borbon Robles'},{rol:'Vocal 2',nombre:'Francisca Badea Verdugo'},{rol:'Vocal 3',nombre:'Jesus Zazueta Quijada'},{rol:'Vocal 4',nombre:'Trinidad Lopez Ochoa'},{rol:'Vocal 5',nombre:'Rigoberto Alvarez Caro'}],uploads:{}},
+  {id:7,municipio:'San Pedro de la Cueva',region:'Sierra',fecha:'2025-05-08',beneficiarios:26,integrantes:[{rol:'Presidente/a',nombre:'Concepcion Valenzuela Manriquez'},{rol:'Secretario/a',nombre:'Benito Ruiz Celaya'},{rol:'Vocal 1',nombre:'Amalia Castro Gil'},{rol:'Vocal 2',nombre:'Fidel Moreno Soto'},{rol:'Vocal 3',nombre:'Dulce Corrales Montano'},{rol:'Vocal 4',nombre:'Marco Arvizu Badea'},{rol:'Vocal 5',nombre:'Luz Salazar Orrantia'}],uploads:{}},
+  {id:8,municipio:'Bacoachi',region:'Norte',fecha:'2025-05-15',beneficiarios:29,integrantes:[{rol:'Presidente/a',nombre:'Fermin Grijalva Duarte'},{rol:'Secretario/a',nombre:'Sandra Mendoza Encinas'},{rol:'Vocal 1',nombre:'Alfredo Valenzuela Camou'},{rol:'Vocal 2',nombre:'Rosalba Ceballos Manez'},{rol:'Vocal 3',nombre:'Luis Bernal Grijalva'},{rol:'Vocal 4',nombre:'Gloria Urrea Meza'},{rol:'Vocal 5',nombre:'Rene Borquez Torres'}],uploads:{}},
+  {id:9,municipio:'Aconchi',region:'Centro',fecha:'2025-05-20',beneficiarios:31,integrantes:[{rol:'Presidente/a',nombre:'Hortensia Soto Robles'},{rol:'Secretario/a',nombre:'Daniel Peralta Ramos'},{rol:'Vocal 1',nombre:'Cecilia Montano Dorame'},{rol:'Vocal 2',nombre:'Oscar Ruiz Galvez'},{rol:'Vocal 3',nombre:'Norma Lugo Contreras'},{rol:'Vocal 4',nombre:'Rafael Ortega Grijalva'},{rol:'Vocal 5',nombre:'Beatriz Salido Felix'}],uploads:{}},
+  {id:10,municipio:'Arizpe',region:'Norte',fecha:'2025-05-25',beneficiarios:27,integrantes:[{rol:'Presidente/a',nombre:'Edelmira Corral Robles'},{rol:'Secretario/a',nombre:'Ignacio Salazar Borbon'},{rol:'Vocal 1',nombre:'Sonia Campa Meza'},{rol:'Vocal 2',nombre:'Felix Grijalva Verdugo'},{rol:'Vocal 3',nombre:'Pilar Lugo Gil'},{rol:'Vocal 4',nombre:'Aurelio Celaya Bojorquez'},{rol:'Vocal 5',nombre:'Lidia Angulo Oroz'}],uploads:{}},
+  {id:11,municipio:'Banamichi',region:'Centro',fecha:'2025-06-01',beneficiarios:28,integrantes:[{rol:'Presidente/a',nombre:'Heriberto Camou Montano'},{rol:'Secretario/a',nombre:'Ernestina Valenzuela Salazar'},{rol:'Vocal 1',nombre:'Vladimir Robles Meza'},{rol:'Vocal 2',nombre:'Antonia Bracamonte Ruiz'},{rol:'Vocal 3',nombre:'Nestor Encinas Badea'},{rol:'Vocal 4',nombre:'Consuelo Torres Salido'},{rol:'Vocal 5',nombre:'Margarita Zazueta Aragon'}],uploads:{}},
+  {id:12,municipio:'Baviacora',region:'Centro',fecha:'2025-06-05',beneficiarios:32,integrantes:[{rol:'Presidente/a',nombre:'Arcelia Bracamonte Valenzuela'},{rol:'Secretario/a',nombre:'Francisco Durazo Quiroz'},{rol:'Vocal 1',nombre:'Milagros Ochoa Robles'},{rol:'Vocal 2',nombre:'Josue Grijalva Encinas'},{rol:'Vocal 3',nombre:'Victoria Celaya Corrales'},{rol:'Vocal 4',nombre:'Genaro Angulo Bojorquez'},{rol:'Vocal 5',nombre:'Marisol Meza Bernal'}],uploads:{}},
+  {id:13,municipio:'Huepac',region:'Centro',fecha:'2025-06-10',beneficiarios:26,integrantes:[{rol:'Presidente/a',nombre:'Sebastian Moreno Dorame'},{rol:'Secretario/a',nombre:'Alondra Soto Camou'},{rol:'Vocal 1',nombre:'Camilo Bracamonte Gil'},{rol:'Vocal 2',nombre:'Rebeca Valenzuela Angulo'},{rol:'Vocal 3',nombre:'Hugo Celaya Meza'},{rol:'Vocal 4',nombre:'Piedad Meza Torres'},{rol:'Vocal 5',nombre:'Cristobal Salazar Robles'}],uploads:{}}
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────────────
-let committees = [];
-let leafletMap = null;
-let markers = {};
-let editingId = null;
-let memberDocs = {}; // stores uploaded file names per committee
-let nextId = 100;
+let DATA=[],REPS=[],NID=100,NRID=1000,EID=null,ERID=null,PD={},B={};
+let LM=null,MK={};
 
-function loadData(){
+function load(){
   try{
-    const saved = localStorage.getItem('cs_committees');
-    if(saved) committees = JSON.parse(saved);
-    else committees = INITIAL.map(c=>({...c,docs:{...c.docs}}));
-    const savedDocs = localStorage.getItem('cs_docs');
-    if(savedDocs) memberDocs = JSON.parse(savedDocs);
-    const sid = localStorage.getItem('cs_nextid');
-    if(sid) nextId = parseInt(sid);
-  }catch(e){committees = INITIAL.map(c=>({...c}));}
+    const d=localStorage.getItem('cs_def_v1');DATA=d?JSON.parse(d):INIT.map(function(c){return Object.assign({},c,{uploads:Object.assign({},c.uploads)});});
+    const r=localStorage.getItem('cs_rep_v1');REPS=r?JSON.parse(r):[];
+  }catch(e){DATA=INIT.map(function(c){return Object.assign({},c,{uploads:{}});});REPS=[];}
 }
-function saveData(){
-  localStorage.setItem('cs_committees', JSON.stringify(committees));
-  localStorage.setItem('cs_docs', JSON.stringify(memberDocs));
-  localStorage.setItem('cs_nextid', String(nextId));
+function save(){try{localStorage.setItem('cs_def_v1',JSON.stringify(DATA));localStorage.setItem('cs_rep_v1',JSON.stringify(REPS));}catch(e){}}
+
+function showV(v){
+  ['pub','login','adm'].forEach(function(id){
+    const el=document.getElementById(id);
+    if(el) el.style.display=(id===v)?'block':'none';
+  });
+  document.getElementById('fab').style.display=(v==='pub')?'flex':'none';
+  if(v==='pub'){updS();renderL();buildMap();}
+  if(v==='adm') renderA();
 }
 
-// ── VIEWS ─────────────────────────────────────────────────────────────────
-function showPublic(){
-  document.getElementById('public-view').style.display='block';
-  document.getElementById('login-view').style.display='none';
-  document.getElementById('admin-view').style.display='none';
-  updateStats(); renderCommittees(); renderMap();
+function goTo(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
-function showLogin(){
-  document.getElementById('public-view').style.display='none';
-  document.getElementById('login-view').style.display='flex';
-  document.getElementById('admin-view').style.display='none';
-}
-function showAdmin(){
-  document.getElementById('public-view').style.display='none';
-  document.getElementById('login-view').style.display='none';
-  document.getElementById('admin-view').style.display='block';
-  renderAdminTable();
-}
+
 function doLogin(){
-  const u=document.getElementById('login-user').value;
-  const p=document.getElementById('login-pass').value;
-  if((u==='admin'&&p==='bienestar2026')||(u.includes('@')&&p.length>=4)){
-    document.getElementById('login-error').textContent='';
-    showAdmin();
-  } else {
-    document.getElementById('login-error').textContent='Usuario o contraseña incorrectos.';
-  }
-}
-function logout(){showPublic();}
-function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
-
-// ── STATS ─────────────────────────────────────────────────────────────────
-function updateStats(){
-  const total=committees.length;
-  const muns=new Set(committees.map(c=>c.municipio)).size;
-  const ints=committees.length*7;
-  const fam=committees.reduce((s,c)=>s+(c.beneficiarios||0),0);
-  document.getElementById('stat-comites').textContent=total;
-  document.getElementById('stat-municipios').textContent=muns;
-  document.getElementById('stat-integrantes').textContent=ints;
-  document.getElementById('stat-familias').textContent=fam;
-  document.getElementById('list-badge').textContent=total;
-  document.getElementById('shown-count').textContent=total;
-  document.getElementById('total-count').textContent=total;
+  const u=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value;
+  if((u==='admin'&&p==='bienestar2026')||(u.length>3&&p.length>=4)){document.getElementById('lerr').textContent='';showV('adm');}
+  else document.getElementById('lerr').textContent='Usuario o contrasena incorrectos.';
 }
 
-// ── MAP ───────────────────────────────────────────────────────────────────
-function initMap(){
-  if(leafletMap) return;
-  leafletMap=L.map('map',{center:[29.2,-110.5],zoom:6,scrollWheelZoom:true});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxZoom:18
-  }).addTo(leafletMap);
+function fD(d){if(!d)return '-';try{const parts=d.split('-');const y=parts[0],m=parts[1],dy=parts[2];const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return parseInt(dy)+' '+ms[parseInt(m)-1]+' '+y;}catch(e){return d;}}
+
+function updS(){
+  const t=DATA.length,mu=new Set(DATA.map(function(c){return c.municipio;})).size,fam=DATA.reduce(function(s,c){return s+(c.beneficiarios||0);},0);
+  document.getElementById('sc').textContent=t;document.getElementById('sm').textContent=mu;
+  document.getElementById('si').textContent=t*7;document.getElementById('sf').textContent=fam;
+  document.getElementById('lbdg').textContent=t;document.getElementById('fto').textContent=t;document.getElementById('fsh').textContent=t;
+  const fim=document.getElementById('fim');fim.innerHTML='<option value="">Todos los municipios</option>';
+  DATA.forEach(function(c){const o=document.createElement('option');o.value=c.municipio;o.textContent=c.municipio;fim.appendChild(o);});
+  const rm=document.getElementById('rmun');rm.innerHTML='<option value="">Seleccionar...</option>';
+  DATA.forEach(function(c){const o=document.createElement('option');o.value=c.municipio;o.textContent=c.municipio;rm.appendChild(o);});
 }
-function createMarkerIcon(){
+
+function renderL(){
+  document.getElementById('cgrid').innerHTML=DATA.map(function(c){
+    const pr=(c.integrantes||[]).filter(function(i){return i.rol==='Presidente/a';})[0];
+    const sc2=(c.integrantes||[]).filter(function(i){return i.rol==='Secretario/a';})[0];
+    const prName=pr?pr.nombre:'-';
+    const scName=sc2?sc2.nombre:'-';
+    const dc=DK.filter(function(k){return B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);}).length;
+    const docsHtml=DK.map(function(k){const h=B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);return '<span class="dtag '+(h?'ok':'no')+'">'+DL[k]+'</span>';}).join('');
+    return '<div class="ccard" onclick="openDet('+c.id+')">'+
+      '<div class="ctop"><div><div class="cmun">'+c.municipio+'</div><div class="creg">Region '+(c.region||'-')+'</div></div><span class="cbdg">'+dc+'/6 docs</span></div>'+
+      '<div class="cmeta"><span>Fecha: '+fD(c.fecha)+'</span><span>7 integrantes</span><span>'+(c.beneficiarios||'-')+' familias</span></div>'+
+      '<div class="cchips"><span class="chip p">Pres: '+prName+'</span><span class="chip">Sec: '+scName+'</span></div>'+
+      '<div class="cdocs">'+docsHtml+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function mkIcon(){
   return L.divIcon({
-    html:`<div style="width:24px;height:24px;background:#5C1A2E;border:3px solid #E8821A;border-radius:50%;box-shadow:0 2px 8px rgba(92,26,46,.4)"></div>`,
-    className:'',iconSize:[24,24],iconAnchor:[12,12]
+    html:'<div style="position:relative;width:28px;height:28px">'+
+      '<div style="position:absolute;inset:0;background:rgba(212,0,106,.32);border-radius:50%;animation:ring 1.55s ease-out infinite"></div>'+
+      '<div style="position:absolute;inset:0;background:rgba(212,0,106,.18);border-radius:50%;animation:ring 1.55s ease-out infinite .68s"></div>'+
+      '<div style="position:absolute;top:5px;left:5px;right:5px;bottom:5px;background:#D4006A;border:2.5px solid #fff;border-radius:50%;box-shadow:0 0 12px 3px rgba(212,0,106,.75)"></div>'+
+    '</div>',
+    className:'',iconSize:[28,28],iconAnchor:[14,14]
   });
 }
-function renderMap(){
-  initMap();
-  Object.values(markers).forEach(m=>leafletMap.removeLayer(m));
-  markers={};
-  committees.forEach(c=>{
-    const lat=c.lat||(COORDS[c.municipio]?.[0]||29.2);
-    const lng=c.lng||(COORDS[c.municipio]?.[1]||-110.5);
-    const m=L.marker([lat,lng],{icon:createMarkerIcon()}).addTo(leafletMap);
-    const pres=c.integrantes?.find(i=>i.rol==='Presidente/a')?.nombre||'—';
-    const docCount=c.docs?Object.values(c.docs).filter(Boolean).length:0;
-    m.bindPopup(`
-      <div class="popup-title">${c.municipio}</div>
-      <div class="popup-sub">Región ${c.region||'—'} · Constituido: ${fmtDate(c.fecha)}</div>
-      <div style="font-size:12px;color:#4A3728;margin-bottom:4px"><b>Presidente/a:</b> ${pres}</div>
-      <div style="font-size:12px;color:#4A3728"><b>Documentos:</b> ${docCount}/6 · <b>Beneficiarios:</b> ${c.beneficiarios||'—'}</div>
-      <button class="popup-btn" onclick="openDetail(${c.id})">Ver ficha completa</button>
-    `);
-    markers[c.id]=m;
-  });
-}
-function applyFilters(){
-  const s=document.getElementById('search-input').value.toLowerCase();
-  const r=document.getElementById('region-filter').value;
-  const mu=document.getElementById('mun-filter').value;
-  let shown=0;
-  committees.forEach(c=>{
-    const ok=(c.municipio.toLowerCase().includes(s)||c.integrantes?.some(i=>i.nombre.toLowerCase().includes(s)))&&(!r||c.region===r)&&(!mu||c.municipio===mu);
-    if(markers[c.id]){
-      if(ok){markers[c.id].addTo(leafletMap);shown++;}
-      else leafletMap.removeLayer(markers[c.id]);
+
+function buildMap(){
+  if(LM){placeMarkers();setTimeout(function(){LM.invalidateSize();},150);return;}
+  if(typeof L==='undefined'){
+    window.__mapRetries=(window.__mapRetries||0)+1;
+    if(window.__mapRetries>60){
+      var mf=document.getElementById('map-fallback');
+      if(mf) mf.innerHTML='No se pudo cargar la libreria Leaflet (sin conexion a internet o CDN bloqueado).<br><span style=\"font-size:11px;opacity:.7\">Verifica tu conexion y recarga la pagina.</span>';
+      return;
     }
-  });
-  document.getElementById('shown-count').textContent=shown;
-}
-function clearFilters(){
-  document.getElementById('search-input').value='';
-  document.getElementById('region-filter').value='';
-  document.getElementById('mun-filter').value='';
-  applyFilters();
-}
-
-// ── COMMITTEES GRID ────────────────────────────────────────────────────────
-function renderCommittees(){
-  const grid=document.getElementById('committees-grid');
-  const mu=document.getElementById('mun-filter');
-  const existingMuns=new Set(mu.querySelectorAll('option:not([value=""])').values&&[...mu.querySelectorAll('option')].map(o=>o.value));
-  if(mu.options.length<=1){
-    committees.forEach(c=>{const o=document.createElement('option');o.value=c.municipio;o.textContent=c.municipio;mu.appendChild(o);});
+    setTimeout(buildMap,150);return;
   }
-  grid.innerHTML=committees.map(c=>committeeCard(c)).join('');
-}
-function committeeCard(c){
-  const pres=c.integrantes?.find(i=>i.rol==='Presidente/a')?.nombre||'—';
-  const sec=c.integrantes?.find(i=>i.rol==='Secretario/a')?.nombre||'—';
-  const docs=c.docs||{};
-  const docEntries=[
-    {key:'acta',label:'Acta Constitutiva'},
-    {key:'asistencia',label:'Lista Asistencia'},
-    {key:'peticion',label:'Petición Ciudadana'},
-    {key:'solicitud',label:'Solicitud Información'},
-    {key:'ficha',label:'Ficha Técnica'},
-    {key:'minuta',label:'Minuta'},
+  var mf=document.getElementById('map-fallback');if(mf)mf.remove();
+  LM=L.map('map',{center:[29.0,-110.3],zoom:6,zoomControl:true});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
+    maxZoom:19,subdomains:'abcd'
+  }).addTo(LM);
+  const geos=[
+    'https://raw.githubusercontent.com/angelnmara/geojson/master/sonoraMunicipios.json',
+    'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/sonora.geojson'
   ];
-  return `<div class="committee-card" onclick="openDetail(${c.id})">
-    <div class="card-header">
-      <div>
-        <div class="card-municipality">${c.municipio}</div>
-        <div class="card-region">Región ${c.region||'—'}</div>
-      </div>
-      <span class="card-badge">${Object.values(docs).filter(Boolean).length}/6 docs</span>
-    </div>
-    <div class="card-meta">
-      <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${fmtDate(c.fecha)}</span>
-      <span><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>7 integrantes</span>
-      <span><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>${c.beneficiarios||'—'} familias</span>
-    </div>
-    <div class="card-members">
-      <span class="member-chip pres">Pres: ${pres}</span>
-      <span class="member-chip">Sec: ${sec}</span>
-    </div>
-    <div class="card-docs">
-      ${docEntries.map(d=>`<span class="doc-chip${docs[d.key]?'':' missing'}"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>${d.label}</span>`).join('')}
-    </div>
-  </div>`;
+  function tryG(i){
+    if(i>=geos.length)return;
+    fetch(geos[i]).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(geo){
+      L.geoJSON(geo,{
+        style:function(){return {color:'#D4006A',weight:1.2,fillColor:'rgba(212,0,106,0.04)',fillOpacity:1,opacity:.55};},
+        onEachFeature:function(f,layer){
+          const nm=(f.properties&&(f.properties.NOMGEO||f.properties.name||f.properties.NAME))||'';
+          if(nm) layer.bindTooltip(nm,{permanent:false,direction:'center',opacity:.92});
+          layer.on('mouseover',function(){layer.setStyle({fillColor:'rgba(212,0,106,0.1)',weight:2});});
+          layer.on('mouseout',function(){layer.setStyle({fillColor:'rgba(212,0,106,0.04)',weight:1.2});});
+        }
+      }).addTo(LM);
+    }).catch(function(){tryG(i+1);});
+  }
+  tryG(0);
+  placeMarkers();
+  setTimeout(function(){LM.invalidateSize();},200);
 }
 
-// ── DETAIL MODAL ─────────────────────────────────────────────────────────
-function openDetail(id){
-  const c=committees.find(x=>x.id===id);
-  if(!c) return;
-  document.getElementById('dm-title').textContent='Comité de Contraloría Social · '+c.municipio;
-  document.getElementById('dm-sub').textContent=`Región ${c.region||'—'} · Constituido el ${fmtDate(c.fecha)}`;
-  document.getElementById('dm-info').innerHTML=`
-    <div class="info-row"><span class="info-key">Municipio</span><span class="info-val">${c.municipio}</span></div>
-    <div class="info-row"><span class="info-key">Región</span><span class="info-val">${c.region||'—'}</span></div>
-    <div class="info-row"><span class="info-key">Fecha de constitución</span><span class="info-val">${fmtDate(c.fecha)}</span></div>
-    <div class="info-row"><span class="info-key">Familias beneficiadas</span><span class="info-val">${c.beneficiarios||'—'}</span></div>
-    <div class="info-row"><span class="info-key">Total de integrantes</span><span class="info-val">7 (1 presidente/a, 1 secretario/a, 5 vocales)</span></div>
-    <div class="info-row"><span class="info-key">Programa</span><span class="info-val">Fortalecimiento Económico para Familias Vulnerables</span></div>
-  `;
-  const mems=c.integrantes||[];
-  document.getElementById('dm-members').innerHTML=mems.map(m=>`
-    <div class="member-row">
-      <span class="member-role">${m.rol}</span>
-      <span class="member-name">${m.nombre}</span>
-    </div>`).join('');
-  const docs=c.docs||{};
-  const docMap={acta:'Acta Constitutiva',asistencia:'Lista de Asistencia',peticion:'Formato Petición Ciudadana',solicitud:'Solicitud de Información',ficha:'Ficha Técnica',minuta:'Minuta de Reunión'};
-  const saved=memberDocs[id]||{};
-  document.getElementById('dm-docs').innerHTML=Object.entries(docMap).map(([k,label])=>{
-    const hasFile=docs[k]||saved[k];
-    return `<div class="doc-item${hasFile?'':' missing'}">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      <span>${label}${hasFile?'':' (pendiente)'}</span>
-    </div>`;
+function placeMarkers(){
+  Object.values(MK).forEach(function(m){LM.removeLayer(m);});MK={};
+  DATA.forEach(function(c){
+    const co=CRD[c.municipio]||[29.2,-110.5];
+    const lat=c.lat||co[0],lng=c.lng||co[1];
+    const m=L.marker([lat,lng],{icon:mkIcon()}).addTo(LM);
+    const pr=(c.integrantes||[]).filter(function(i){return i.rol==='Presidente/a';})[0];
+    const prName=pr?pr.nombre:'-';
+    const dc=DK.filter(function(k){return B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);}).length;
+    const html='<div style="font-family:Inter,system-ui,sans-serif;min-width:200px;line-height:1.5">'+
+      '<div style="font-family:\'Playfair Display\',Georgia,serif;font-size:.98rem;color:#3D1020;font-weight:700;margin-bottom:3px">'+c.municipio+'</div>'+
+      '<div style="font-size:11px;color:#6B5B50;margin-bottom:6px">Region '+(c.region||'-')+' - '+fD(c.fecha)+'</div>'+
+      '<div style="font-size:12px;color:#2C1810;margin-bottom:2px"><span style="color:#6B5B50;font-weight:500">Presidente/a:</span> '+prName+'</div>'+
+      '<div style="font-size:12px;color:#2C1810;margin-bottom:8px"><span style="color:#6B5B50;font-weight:500">Docs:</span> '+dc+'/6 - <span style="color:#6B5B50;font-weight:500">Familias:</span> '+(c.beneficiarios||'-')+'</div>'+
+      '<button onclick="openDet('+c.id+')" style="background:#5C1A2E;color:#fff;border:none;border-radius:14px;padding:6px 15px;font-size:11.5px;cursor:pointer;font-family:inherit;font-weight:500">Ver ficha completa</button>'+
+    '</div>';
+    m.bindPopup(html,{maxWidth:260});
+    MK[c.id]=m;
+  });
+}
+
+function applyF(){
+  const s=document.getElementById('fis').value.toLowerCase(),
+        r=document.getElementById('fir').value,
+        mu=document.getElementById('fim').value;
+  let sh=0;
+  DATA.forEach(function(c){
+    const nameMatch=c.municipio.toLowerCase().indexOf(s)!==-1;
+    const memberMatch=(c.integrantes||[]).some(function(i){return i.nombre.toLowerCase().indexOf(s)!==-1;});
+    const ok=(nameMatch||memberMatch)&&(!r||c.region===r)&&(!mu||c.municipio===mu);
+    if(MK[c.id]){if(ok){MK[c.id].addTo(LM);sh++;}else LM.removeLayer(MK[c.id]);}
+  });
+  document.getElementById('fsh').textContent=sh;
+}
+function clearF(){['fis','fir','fim'].forEach(function(id){document.getElementById(id).value='';});applyF();}
+
+function openDet(id){
+  const c=DATA.filter(function(x){return x.id===id;})[0];if(!c)return;
+  document.getElementById('dmt').textContent='Comite - '+c.municipio;
+  document.getElementById('dms').textContent='Region '+(c.region||'-')+' - Constituido el '+fD(c.fecha);
+  document.getElementById('dmi').innerHTML=
+    '<div class="ir"><span class="ik">Municipio</span><span class="iv">'+c.municipio+'</span></div>'+
+    '<div class="ir"><span class="ik">Region</span><span class="iv">'+(c.region||'-')+'</span></div>'+
+    '<div class="ir"><span class="ik">Fecha de constitucion</span><span class="iv">'+fD(c.fecha)+'</span></div>'+
+    '<div class="ir"><span class="ik">Familias beneficiadas</span><span class="iv">'+(c.beneficiarios||'-')+'</span></div>'+
+    '<div class="ir"><span class="ik">Total integrantes</span><span class="iv">7 (1 presidente/a, 1 secretario/a, 5 vocales)</span></div>';
+  document.getElementById('dmm').innerHTML=(c.integrantes||[]).map(function(m){
+    return '<div class="mrow"><span class="mrole">'+m.rol+'</span><span class="mname">'+(m.nombre||'-')+'</span></div>';
   }).join('');
-  openModal('detail-modal');
-}
-
-// ── ADMIN TABLE ────────────────────────────────────────────────────────────
-function renderAdminTable(){
-  const tbody=document.getElementById('admin-tbody');
-  document.getElementById('adm-stat-comites').textContent=committees.length;
-  document.getElementById('adm-stat-mun').textContent=new Set(committees.map(c=>c.municipio)).size;
-  document.getElementById('adm-stat-int').textContent=committees.length*7;
-  document.getElementById('adm-stat-pct').textContent=Math.round(committees.length/35*100)+'%';
-  tbody.innerHTML=committees.map((c,i)=>{
-    const pres=c.integrantes?.find(m=>m.rol==='Presidente/a')?.nombre||'—';
-    const docCount=c.docs?Object.values(c.docs).filter(Boolean).length:0;
-    return `<tr>
-      <td style="color:var(--gris-texto);font-weight:600">${i+1}</td>
-      <td><strong>${c.municipio}</strong></td>
-      <td>${c.region||'—'}</td>
-      <td>${fmtDate(c.fecha)}</td>
-      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${pres}</td>
-      <td>7</td>
-      <td><span class="doc-count">${docCount}/6</span></td>
-      <td style="display:flex;gap:5px;flex-wrap:wrap">
-        <button class="tbl-btn tbl-edit" onclick="openEditCommittee(${c.id})">Editar</button>
-        <button class="tbl-btn tbl-docs" onclick="openDocsCommittee(${c.id})">Documentos</button>
-        <button class="tbl-btn tbl-del" onclick="deleteCommittee(${c.id})">Eliminar</button>
-      </td>
-    </tr>`;
+  document.getElementById('dmd').innerHTML=DK.map(function(k){
+    const b=B[c.id+'_'+k];const n=(c.uploads&&c.uploads[k])||(b&&b.name);const h=!!b||!!(c.uploads&&c.uploads[k]);
+    const icon='<div class="dico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>';
+    return '<div class="di '+(h?'ok':'miss')+'" onclick="'+(h?('viewDoc('+c.id+',\''+k+'\')'):'')+'" style="'+(h?'':'cursor:default')+'">'+icon+
+      '<div><div style="font-size:11.5px;font-weight:600">'+DL[k]+'</div><div style="font-size:9.5px;opacity:.72;margin-top:1px">'+(h?(n||'Ver'):'Pendiente')+'</div></div>'+
+    '</div>';
   }).join('');
+  openM('det-m');
 }
 
-// ── FORM MODAL ────────────────────────────────────────────────────────────
-function buildMemberFields(vals){
-  return ROLES.map((rol,i)=>`
-    <div class="form-row" style="margin-bottom:.5rem">
-      <div class="form-group" style="grid-column:span 2">
-        <label>${rol}</label>
-        <input type="text" id="fm-member-${i}" placeholder="Nombre completo" value="${vals?vals[i]?.nombre||'':''}">
-      </div>
-    </div>`).join('');
+function viewDoc(id,key){
+  const b=B[id+'_'+key];
+  document.getElementById('dvt').textContent=DL[key];
+  const dvb=document.getElementById('dvb');
+  if(b){
+    if(b.type==='application/pdf') dvb.innerHTML='<iframe src="'+b.url+'" style="width:100%;height:400px;border:none"></iframe>';
+    else if(b.type.indexOf('image/')===0) dvb.innerHTML='<img src="'+b.url+'" alt="'+DL[key]+'" style="width:100%;max-height:400px;object-fit:contain">';
+    else dvb.innerHTML='<div class="dvph"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><p><strong>'+b.name+'</strong><br><a href="'+b.url+'" download="'+b.name+'" style="color:var(--vino);font-weight:600">Descargar</a></p></div>';
+  } else {
+    dvb.innerHTML='<div class="dvph"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p style="margin-bottom:.5rem">No se ha subido este documento todavia.</p><div class="upa"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="uploadV('+id+',\''+key+'\',this)"><svg class="du-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Subir documento ahora</span></div></div>';
+  }
+  openM('dv');
 }
-function buildDocFields(vals){
-  const docMap={acta:'Acta Constitutiva',asistencia:'Lista de Asistencia',peticion:'Petición Ciudadana',solicitud:'Solicitud de Información',ficha:'Ficha Técnica',minuta:'Minuta de Reunión'};
-  return Object.entries(docMap).map(([k,label])=>`
-    <div class="doc-upload-item${vals&&vals[k]?' uploaded':''}" id="doc-item-${k}">
-      <input type="file" accept=".pdf" onchange="markDocUploaded('${k}',this)">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      <span id="doc-lbl-${k}">${vals&&vals[k]?'✓ '+label:label}</span>
-    </div>`).join('');
+function uploadV(id,key,inp){
+  if(!inp.files.length)return;
+  const f=inp.files[0];const url=URL.createObjectURL(f);
+  B[id+'_'+key]={url:url,name:f.name,type:f.type};
+  const c=DATA.filter(function(x){return x.id===id;})[0];
+  if(c){if(!c.uploads)c.uploads={};c.uploads[key]=f.name;save();}
+  closeM('dv');toast('Documento subido: '+f.name);openDet(id);renderL();placeMarkers();
 }
-let pendingDocs={};
-function markDocUploaded(key,input){
-  if(input.files.length){
-    const el=document.getElementById('doc-item-'+key);
-    el.classList.add('uploaded');
-    document.getElementById('doc-lbl-'+key).textContent='✓ '+input.files[0].name;
-    pendingDocs[key]=input.files[0].name;
+
+function renderA(){
+  const t=DATA.length,mu=new Set(DATA.map(function(c){return c.municipio;})).size,pct=Math.round(t/35*100);
+  document.getElementById('ac').textContent=t;document.getElementById('am').textContent=mu;
+  document.getElementById('ai').textContent=t*7;document.getElementById('ap').textContent=pct+'%';
+  document.getElementById('abf').style.width=Math.min(pct,100)+'%';
+  const pnd=REPS.filter(function(r){return r.status==='Pendiente';}).length;
+  document.getElementById('rbcnt').textContent=pnd;
+  document.getElementById('atb').innerHTML=DATA.map(function(c,i){
+    const pr=(c.integrantes||[]).filter(function(m){return m.rol==='Presidente/a';})[0];
+    const prName=pr?pr.nombre:'-';
+    const dc=DK.filter(function(k){return B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);}).length;
+    return '<tr><td style="color:var(--gris)">'+(i+1)+'</td><td><strong>'+c.municipio+'</strong></td><td>'+(c.region||'-')+'</td><td>'+fD(c.fecha)+'</td>'+
+      '<td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+prName+'</td>'+
+      '<td><span style="background:var(--vino);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:9px">'+dc+'/6</span></td>'+
+      '<td><button class="tb te" onclick="openEdit('+c.id+')">Editar</button><button class="tb tv" onclick="openEdit('+c.id+')">Docs</button><button class="tb tdel" onclick="delC('+c.id+')">Eliminar</button></td></tr>';
+  }).join('');
+  document.getElementById('rtb').innerHTML=REPS.length?REPS.map(function(r,i){
+    const cls=r.status==='Pendiente'?'rp':r.status==='En revision'?'rev':r.status==='Atendido'?'rr':'rc';
+    const ev=(r.ev||[]).length;
+    return '<tr><td style="color:var(--gris)">'+(i+1)+'</td><td><strong>#'+r.folio+'</strong></td>'+
+      '<td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+r.tipo+'</td><td>'+(r.municipio||'-')+'</td><td>'+fD(r.freg)+'</td>'+
+      '<td><span class="rbdg '+cls+'">'+r.status+'</span></td>'+
+      '<td>'+(ev>0?('<span style="font-size:11px;color:var(--verde);font-weight:600">'+ev+' archivo(s)</span>'):'<span style="color:#CCC;font-size:11px">-</span>')+'</td>'+
+      '<td><button class="tb tg" onclick="openRD('+r.id+')">Ver / Seguimiento</button></td></tr>';
+  }).join(''):'<tr><td colspan="8" style="text-align:center;color:var(--gris);padding:2rem;font-size:12.5px">No hay reportes ciudadanos todavia.</td></tr>';
+}
+
+function swTab(t){
+  document.getElementById('tc').style.display=t==='c'?'block':'none';
+  document.getElementById('tr2').style.display=t==='r'?'block':'none';
+  document.getElementById('tabc').classList.toggle('on',t==='c');
+  document.getElementById('tabr').classList.toggle('on',t==='r');
+}
+
+function mf(r,i,v){
+  return '<div style="margin-bottom:.45rem"><label style="display:block;font-size:9px;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.22rem">'+r+'</label><input type="text" id="mm'+i+'" value="'+v+'" placeholder="Nombre completo" style="width:100%;border:1.5px solid var(--borde);border-radius:7px;padding:7px 9px;font-size:12.5px;font-family:inherit;outline:none;background:#fff"></div>';
+}
+function openNew(){
+  EID=null;PD={};
+  document.getElementById('fmt').textContent='Registrar nuevo comite';
+  document.getElementById('fmid').value='';
+  ['fmun','freg','ffec','fben','flat','flng'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('fmems').innerHTML=ROLES.map(function(r,i){return mf(r,i,'');}).join('');
+  document.getElementById('fdocs').innerHTML=DK.map(function(k){return '<div class="du" id="du'+k+'"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="mDoc(0,\''+k+'\',this)"><svg class="du-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span id="dl'+k+'">'+DL[k]+'</span></div>';}).join('');
+  openM('form-m');
+}
+function openEdit(id){
+  const c=DATA.filter(function(x){return x.id===id;})[0];if(!c)return;
+  EID=id;PD={};
+  document.getElementById('fmt').textContent='Editar - '+c.municipio;
+  document.getElementById('fmid').value=id;
+  document.getElementById('fmun').value=c.municipio||'';
+  document.getElementById('freg').value=c.region||'';
+  document.getElementById('ffec').value=c.fecha||'';
+  document.getElementById('fben').value=c.beneficiarios||'';
+  const co=CRD[c.municipio]||[29.2,-110.5];
+  document.getElementById('flat').value=c.lat||co[0];
+  document.getElementById('flng').value=c.lng||co[1];
+  document.getElementById('fmems').innerHTML=ROLES.map(function(r,i){
+    const mem=(c.integrantes||[])[i];
+    return mf(r,i,mem?mem.nombre:'');
+  }).join('');
+  document.getElementById('fdocs').innerHTML=DK.map(function(k){
+    const h=B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);
+    return '<div class="du'+(h?' done':'')+'" id="du'+k+'"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="mDoc('+c.id+',\''+k+'\',this)"><svg class="du-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span id="dl'+k+'">'+(h?('Subido: '+((c.uploads&&c.uploads[k])||DL[k])):DL[k])+'</span></div>';
+  }).join('');
+  openM('form-m');
+}
+function mDoc(cid,k,inp){
+  if(!inp.files.length)return;
+  const f=inp.files[0];const url=URL.createObjectURL(f);
+  PD[k]={url:url,name:f.name,type:f.type};
+  document.getElementById('du'+k).classList.add('done');
+  document.getElementById('dl'+k).textContent='Subido: '+f.name;
+  if(cid>0){
+    // Comite existente: guardar el documento de inmediato sin afectar el resto de la informacion
+    B[cid+'_'+k]={url:url,name:f.name,type:f.type};
+    const c=DATA.filter(function(x){return x.id===cid;})[0];
+    if(c){
+      if(!c.uploads)c.uploads={};
+      c.uploads[k]=f.name;
+      save();
+      renderL();renderA();placeMarkers();
+      toast('Documento "'+DL[k]+'" guardado correctamente');
+    }
   }
 }
-function openNewCommittee(){
-  editingId=null; pendingDocs={};
-  document.getElementById('fm-title').textContent='Registrar nuevo comité';
-  document.getElementById('fm-id').value='';
-  ['fm-municipio','fm-region','fm-fecha','fm-beneficiarios','fm-lat','fm-lng'].forEach(id=>{document.getElementById(id).value='';});
-  document.getElementById('fm-members-fields').innerHTML=buildMemberFields(null);
-  document.getElementById('fm-docs-fields').innerHTML=buildDocFields(null);
-  openModal('form-modal');
-}
-function openEditCommittee(id){
-  const c=committees.find(x=>x.id===id);
-  if(!c) return;
-  editingId=id; pendingDocs={};
-  document.getElementById('fm-title').textContent='Editar comité · '+c.municipio;
-  document.getElementById('fm-id').value=id;
-  document.getElementById('fm-municipio').value=c.municipio||'';
-  document.getElementById('fm-region').value=c.region||'';
-  document.getElementById('fm-fecha').value=c.fecha||'';
-  document.getElementById('fm-beneficiarios').value=c.beneficiarios||'';
-  document.getElementById('fm-lat').value=c.lat||'';
-  document.getElementById('fm-lng').value=c.lng||'';
-  document.getElementById('fm-members-fields').innerHTML=buildMemberFields(c.integrantes);
-  document.getElementById('fm-docs-fields').innerHTML=buildDocFields(c.docs);
-  openModal('form-modal');
-}
-function openDocsCommittee(id){
-  const c=committees.find(x=>x.id===id);
-  if(!c) return;
-  editingId=id; pendingDocs={};
-  document.getElementById('fm-title').textContent='Documentos · '+c.municipio;
-  document.getElementById('fm-id').value=id;
-  // Keep other fields hidden in docs mode
-  document.getElementById('fm-docs-fields').innerHTML=buildDocFields(c.docs);
-  openModal('form-modal');
-}
-function saveCommittee(){
-  const municipio=document.getElementById('fm-municipio').value.trim();
-  const region=document.getElementById('fm-region').value;
-  const fecha=document.getElementById('fm-fecha').value;
-  const beneficiarios=parseInt(document.getElementById('fm-beneficiarios').value)||0;
-  const lat=parseFloat(document.getElementById('fm-lat').value)||COORDS[municipio]?.[0]||29.2;
-  const lng=parseFloat(document.getElementById('fm-lng').value)||COORDS[municipio]?.[1]||-110.5;
-  if(!municipio){showToast('Ingresa el nombre del municipio');return;}
-  const integrantes=ROLES.map((rol,i)=>({rol,nombre:document.getElementById('fm-member-'+i)?.value||''}));
-  const docKeys=['acta','asistencia','peticion','solicitud','ficha','minuta'];
-  if(editingId){
-    const idx=committees.findIndex(x=>x.id===editingId);
+function saveC(){
+  const mun=document.getElementById('fmun').value.trim(),reg=document.getElementById('freg').value,fec=document.getElementById('ffec').value;
+  if(!mun){toast('Ingresa el nombre del municipio');return;}
+  const ben=parseInt(document.getElementById('fben').value)||0;
+  const co=CRD[mun]||[29.2,-110.5];
+  const lat=parseFloat(document.getElementById('flat').value)||co[0],lng=parseFloat(document.getElementById('flng').value)||co[1];
+  const ints=ROLES.map(function(rol,i){
+    const inp=document.getElementById('mm'+i);
+    return {rol:rol,nombre:inp?inp.value:''};
+  });
+  if(EID){
+    const idx=DATA.findIndex(function(x){return x.id===EID;});
     if(idx>=0){
-      committees[idx]={...committees[idx],municipio,region,fecha,beneficiarios,lat,lng,integrantes};
-      docKeys.forEach(k=>{if(pendingDocs[k]) committees[idx].docs[k]=true;});
-      if(memberDocs[editingId]) Object.assign(memberDocs[editingId],pendingDocs);
-      else memberDocs[editingId]=pendingDocs;
+      if(!DATA[idx].uploads)DATA[idx].uploads={};
+      DK.forEach(function(k){if(PD[k]){B[EID+'_'+k]=PD[k];DATA[idx].uploads[k]=PD[k].name;}});
+      DATA[idx]=Object.assign({},DATA[idx],{municipio:mun,region:reg,fecha:fec,beneficiarios:ben,lat:lat,lng:lng,integrantes:ints});
     }
   } else {
-    if(!fecha){showToast('Ingresa la fecha de constitución');return;}
-    const newC={id:nextId++,municipio,region,fecha,beneficiarios,lat,lng,integrantes,
-      docs:{acta:!!pendingDocs.acta,asistencia:!!pendingDocs.asistencia,peticion:!!pendingDocs.peticion,solicitud:!!pendingDocs.solicitud,ficha:!!pendingDocs.ficha,minuta:!!pendingDocs.minuta}};
-    committees.push(newC);
-    memberDocs[newC.id]=pendingDocs;
+    if(!fec){toast('Ingresa la fecha de constitucion');return;}
+    const ni=NID++;const uploads={};
+    DK.forEach(function(k){if(PD[k]){B[ni+'_'+k]=PD[k];uploads[k]=PD[k].name;}});
+    DATA.push({id:ni,municipio:mun,region:reg,fecha:fec,beneficiarios:ben,lat:lat,lng:lng,integrantes:ints,uploads:uploads});
   }
-  saveData(); closeModal('form-modal'); renderAdminTable(); showToast('Comité guardado correctamente ✓');
+  save();closeM('form-m');renderA();renderL();updS();placeMarkers();toast('Comite guardado correctamente');
 }
-function deleteCommittee(id){
-  if(!confirm('¿Eliminar este comité? Esta acción no se puede deshacer.')) return;
-  committees=committees.filter(c=>c.id!==id);
-  saveData(); renderAdminTable(); showToast('Comité eliminado');
+function delC(id){
+  if(!confirm('Eliminar este comite?'))return;
+  DATA=DATA.filter(function(c){return c.id!==id;});
+  save();renderA();renderL();updS();placeMarkers();toast('Comite eliminado');
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-function fmtDate(d){
-  if(!d) return '—';
-  try{const [y,m,day]=d.split('-');const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return `${parseInt(day)} ${ms[parseInt(m)-1]} ${y}`;}catch(e){return d;}
+const repOrigHTML=document.getElementById('rep-cnt').innerHTML;
+function subRep(){
+  const checked=document.querySelector('input[name="tipo"]:checked');
+  const tipo=checked?checked.value:null;
+  const desc=document.getElementById('rdesc').value.trim();
+  if(!tipo){toast('Selecciona el tipo de irregularidad');return;}
+  if(!desc){toast('Describe la irregularidad');return;}
+  const folio='CS-'+Date.now().toString().slice(-6);
+  REPS.push({
+    id:NRID++,folio:folio,tipo:tipo,
+    municipio:document.getElementById('rmun').value,
+    fhecho:document.getElementById('rfec').value,
+    freg:new Date().toISOString().slice(0,10),
+    desc:desc,
+    nombre:document.getElementById('rnomb').value||'Anonimo',
+    contacto:document.getElementById('rcont').value,
+    status:'Pendiente',notas:'',resp:'',ev:[]
+  });
+  save();
+  document.getElementById('rep-cnt').innerHTML=
+    '<div class="sbx"><h3>Reporte recibido exitosamente</h3>'+
+    '<p>Tu reporte sobre <strong>"'+tipo+'"</strong> fue registrado con folio <strong>#'+folio+'</strong>.<br><br>'+
+    'La Direccion de Participacion Ciudadana lo atendera en un plazo maximo de <strong>5 dias habiles</strong>.<br><br>'+
+    'Gracias por contribuir a la transparencia del programa.</p></div>'+
+    '<div class="mact" style="margin-top:1rem"><button class="bsv" onclick="closeM(\'rep-m\')">Cerrar</button></div>';
 }
-function showToast(msg){
+function openRD(id){
+  const r=REPS.filter(function(x){return x.id===id;})[0];if(!r)return;
+  ERID=id;
+  document.getElementById('rdmt').textContent='Reporte #'+r.folio;
+  document.getElementById('rdms').textContent=r.tipo+' - '+(r.municipio||'Sin municipio')+' - '+fD(r.freg);
+  document.getElementById('rdmi').innerHTML=
+    '<div class="ir"><span class="ik">Folio</span><span class="iv">#'+r.folio+'</span></div>'+
+    '<div class="ir"><span class="ik">Tipo</span><span class="iv">'+r.tipo+'</span></div>'+
+    '<div class="ir"><span class="ik">Municipio</span><span class="iv">'+(r.municipio||'-')+'</span></div>'+
+    '<div class="ir"><span class="ik">Fecha del hecho</span><span class="iv">'+fD(r.fhecho)+'</span></div>'+
+    '<div class="ir"><span class="ik">Fecha de registro</span><span class="iv">'+fD(r.freg)+'</span></div>'+
+    '<div class="ir"><span class="ik">Reportante</span><span class="iv">'+r.nombre+'</span></div>'+
+    '<div class="ir"><span class="ik">Contacto</span><span class="iv">'+(r.contacto||'-')+'</span></div>';
+  document.getElementById('rdmdesc').textContent=r.desc;
+  document.getElementById('rdmst').value=r.status||'Pendiente';
+  document.getElementById('rdmrsp').value=r.resp||'';
+  document.getElementById('rdmnot').value=r.notas||'';
+  rndEv(r);
+  openM('repd-m');
+}
+function rndEv(r){
+  document.getElementById('rdmdocs').innerHTML=(r.ev||[]).map(function(e,i){
+    const has=B['rep_'+r.id+'_'+i];
+    return '<div style="display:flex;align-items:center;gap:.45rem;padding:.42rem .6rem;background:var(--crema);border-radius:7px;margin-bottom:.3rem;border:1px solid var(--borde)">'+
+      '<span style="font-size:11px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500">'+e.name+'</span>'+
+      (has?('<button onclick="viewRE('+r.id+','+i+')" style="background:none;border:none;color:var(--vino);font-size:10px;cursor:pointer;font-family:inherit;font-weight:600;text-decoration:underline">Ver</button>'):'')+
+    '</div>';
+  }).join('');
+}
+function addEv(inp){
+  const r=REPS.filter(function(x){return x.id===ERID;})[0];if(!r)return;
+  Array.from(inp.files).forEach(function(f){
+    const url=URL.createObjectURL(f);const idx=(r.ev||[]).length;
+    if(!r.ev)r.ev=[];r.ev.push({name:f.name,type:f.type});
+    B['rep_'+r.id+'_'+idx]={url:url,name:f.name,type:f.type};
+  });
+  save();rndEv(r);toast(inp.files.length+' archivo(s) agregado(s)');
+}
+function viewRE(rid,idx){
+  const b=B['rep_'+rid+'_'+idx];if(!b)return;
+  document.getElementById('dvt').textContent=b.name;
+  const dv=document.getElementById('dvb');
+  if(b.type==='application/pdf')dv.innerHTML='<iframe src="'+b.url+'" style="width:100%;height:400px;border:none"></iframe>';
+  else if(b.type.indexOf('image/')===0)dv.innerHTML='<img src="'+b.url+'" alt="'+b.name+'" style="width:100%;max-height:400px;object-fit:contain">';
+  else dv.innerHTML='<div class="dvph"><p><strong>'+b.name+'</strong><br><a href="'+b.url+'" download="'+b.name+'" style="color:var(--vino);font-weight:600">Descargar</a></p></div>';
+  openM('dv');
+}
+function saveRep(){
+  const r=REPS.filter(function(x){return x.id===ERID;})[0];if(!r)return;
+  r.status=document.getElementById('rdmst').value;
+  r.resp=document.getElementById('rdmrsp').value;
+  r.notas=document.getElementById('rdmnot').value;
+  save();closeM('repd-m');renderA();toast('Seguimiento guardado');
+}
+
+function openM(id){document.getElementById(id).classList.add('open');}
+function closeM(id){
+  document.getElementById(id).classList.remove('open');
+  if(id==='rep-m')setTimeout(function(){document.getElementById('rep-cnt').innerHTML=repOrigHTML;},300);
+}
+document.querySelectorAll('.ov,.dov').forEach(function(el){
+  el.addEventListener('click',function(e){if(e.target===el)closeM(el.id);});
+});
+document.getElementById('lp').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+['fis','fir','fim'].forEach(function(id){
+  const el=document.getElementById(id);
+  if(el){el.addEventListener('input',applyF);el.addEventListener('change',applyF);}
+});
+
+function toast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2800);
 }
 
-// Close modals on overlay click
-document.querySelectorAll('.modal-overlay').forEach(el=>{
-  el.addEventListener('click',e=>{if(e.target===el) el.classList.remove('open');});
-});
-// Login on Enter
-document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter') doLogin();});
-// Filters
-['search-input','region-filter','mun-filter'].forEach(id=>{
-  document.getElementById(id)?.addEventListener('input',applyFilters);
-  document.getElementById(id)?.addEventListener('change',applyFilters);
-});
+load();
+showV('pub');
 
-// ── INIT ──────────────────────────────────────────────────────────────────
-loadData();
-showPublic();
 </script>
 </body>
 </html>
