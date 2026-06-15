@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comites de Contraloria Social - Secretaria de Bienestar de Sonora</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" onerror="this.href='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css'"/>
+<title>Comités de Contraloría Social - Secretaría de Bienestar de Sonora</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -42,7 +42,7 @@ html,body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--cre
 .htag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:5px 14px;font-size:10px;font-weight:600;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.2rem}
 .htag svg{width:12px;height:12px;stroke:var(--naranja);fill:none;stroke-width:2}
 .htitle{font-family:'Playfair Display',Georgia,serif;color:var(--blanco);font-size:3.2rem;line-height:1.06;font-weight:700;letter-spacing:-.02em}
-.htitle em{color:var(--naranja);font-style:italic;display:block}
+.htitle em{color:var(--naranja);font-style:italic;display:block;margin:0}
 .hsub{margin:1.1rem auto 0;color:rgba(255,255,255,.7);font-size:14.5px;line-height:1.75;max-width:460px}
 .hsub strong{color:var(--blanco);font-weight:600}
 .hctas{display:flex;gap:10px;margin-top:1.9rem;justify-content:center;flex-wrap:wrap}
@@ -295,30 +295,30 @@ table tr:hover td{background:var(--crema)}
 <nav id="topnav">
   <div class="nb">
     <div class="ni"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-    <div class="nt"><span>Gobierno de Sonora</span><strong>Secretaria de Bienestar de Sonora</strong></div>
+    <div class="nt"><span>Gobierno de Sonora</span><strong>Secretaría de Bienestar de Sonora</strong></div>
   </div>
   <div class="nl">
     <a onclick="goTo('map-s')">Mapa</a>
-    <a onclick="goTo('list-s')">Comites</a>
+    <a onclick="goTo('list-s')">Comités</a>
     <a onclick="goTo('prog-s')">Programa</a>
     <button class="nadm" onclick="showV('login')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      Administracion
+      Administración
     </button>
   </div>
 </nav>
 
 <button id="fab" onclick="openM('rep-m')">
   <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-  <span class="ftxt">Contraloria Social - Reportar Irregularidad</span>
+  <span class="ftxt">Contraloría Social - Reportar Irregularidad</span>
 </button>
 
 <div id="pub">
 <section class="hero">
   <div class="hero-left">
-    <div class="htag"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Contraloria Social - Sonora 2025-2026</div>
-    <h1 class="htitle">Comites de<br><em>Contraloria Social</em><br>en Sonora.</h1>
-    <p class="hsub">Programa de <strong>Fortalecimiento Economico para Familias Vulnerables.</strong> Transparencia, participacion ciudadana y rendicion de cuentas, municipio por municipio.</p>
+    <div class="htag"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Contraloría Social - Sonora 2025-2026</div>
+    <h1 class="htitle">Comités de<br><em>Contraloría Social</em>en Sonora.</h1>
+    <p class="hsub">Programa de <strong>Fortalecimiento Económico para Familias Vulnerables.</strong> Transparencia, participación ciudadana y rendición de cuentas, municipio por municipio.</p>
     <div class="hctas">
       <button class="bpri" onclick="goTo('map-s')">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
@@ -334,7 +334,7 @@ table tr:hover td{background:var(--crema)}
     <div class="scard">
       <div class="scard-ttl">Indicadores Estatales</div>
       <div class="sgrid">
-        <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="snum" id="sc">0</div><div class="slbl">Comites</div></div>
+        <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="snum" id="sc">0</div><div class="slbl">Comités</div></div>
         <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="snum" id="sm">0</div><div class="slbl">Municipios</div></div>
         <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="snum" id="si">0</div><div class="slbl">Integrantes</div></div>
         <div class="sbox"><div class="sico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="snum" id="sf">0</div><div class="slbl">Familias</div></div>
@@ -345,26 +345,26 @@ table tr:hover td{background:var(--crema)}
 </section>
 
 <section class="sec" id="map-s">
-  <div class="pill">Sonora - Territorio en participacion ciudadana</div>
-  <h2 class="stitle">Mapa interactivo de comites</h2>
-  <p class="ssub">Haz clic en cualquier marcador fucsia para ver la ficha completa del comite</p>
+  <div class="pill">Sonora - Territorio en participación ciudadana</div>
+  <h2 class="stitle">Mapa interactivo de comités</h2>
+  <p class="ssub">Haz clic en cualquier marcador fucsia para ver la ficha completa del comité</p>
   <div class="mlayout">
     <div class="fcard">
       <div class="fl">Filtros</div>
       <div class="ft">Explora por territorio</div>
-      <div class="fg"><label>Busqueda</label><input type="text" id="fis" placeholder="Nombre o municipio..."></div>
-      <div class="fg"><label>Region</label><select id="fir"><option value="">Todas las regiones</option><option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option></select></div>
+      <div class="fg"><label>Búsqueda</label><input type="text" id="fis" placeholder="Nombre o municipio..."></div>
+      <div class="fg"><label>Región</label><select id="fir"><option value="">Todas las regiones</option><option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option></select></div>
       <div class="fg"><label>Municipio</label><select id="fim"><option value="">Todos los municipios</option></select></div>
       <button class="fclear" onclick="clearF()">Limpiar filtros</button>
-      <div class="fcnt">Mostrando <strong id="fsh">0</strong> de <strong id="fto">0</strong> comites</div>
+      <div class="fcnt">Mostrando <strong id="fsh">0</strong> de <strong id="fto">0</strong> comités</div>
     </div>
-    <div id="map"><div id="map-fallback" style="display:flex;align-items:center;justify-content:center;height:100%;font-family:Inter,sans-serif;color:#6B5B50;font-size:13px;text-align:center;padding:1rem">Cargando mapa interactivo...<br><span style="font-size:11px;opacity:.7">Si este mensaje no desaparece, revisa la consola del navegador (F12)</span></div></div>
+    <div id="map"></div>
   </div>
 </section>
 
 <section class="lsec" id="list-s">
-  <div class="lhdr"><h2>Listado de comites</h2><span class="bdg" id="lbdg">0</span></div>
-  <p style="font-size:13px;color:var(--gris);margin-bottom:1.1rem">Informacion oficial de cada comite de contraloria social activo en Sonora</p>
+  <div class="lhdr"><h2>Listado de comités</h2><span class="bdg" id="lbdg">0</span></div>
+  <p style="font-size:13px;color:var(--gris);margin-bottom:1.1rem">Información oficial de cada comité de contraloría social activo en Sonora</p>
   <div class="cgrid" id="cgrid"></div>
 </section>
 
@@ -372,31 +372,31 @@ table tr:hover td{background:var(--crema)}
   <div class="pinner">
     <div>
       <div class="plbl">Acerca del programa</div>
-      <h2 class="ptitle">Fortalecimiento Economico para Familias Vulnerables</h2>
-      <p class="ptext">Programa del Gobierno de Sonora que complementa los ingresos de familias en condicion de pobreza extrema mediante transferencias monetarias no condicionadas, permitiendoles cubrir sus necesidades basicas alimentarias y no alimentarias.</p>
+      <h2 class="ptitle">Fortalecimiento Económico para Familias Vulnerables</h2>
+      <p class="ptext">Programa del Gobierno de Sonora que complementa los ingresos de familias en condición de pobreza extrema mediante transferencias monetarias no condicionadas, permitiéndoles cubrir sus necesidades básicas alimentarias y no alimentarias.</p>
       <div style="margin:.5rem 0 .6rem"><span class="pamt">$2,500</span> <span style="font-size:12.5px;color:rgba(255,255,255,.44)">MXN por bimestre - 5 bimestres - 2026</span></div>
-      <p class="ptext" style="font-size:12.5px;color:rgba(255,255,255,.52)">Objetivo: <strong style="color:rgba(255,255,255,.82)">16,000 personas</strong> en condicion de pobreza en todo el estado de Sonora.</p>
-      <p class="pquote">"Este programa es publico, ajeno a cualquier partido politico, asociacion religiosa u organizacion de cualquier otra indole."</p>
+      <p class="ptext" style="font-size:12.5px;color:rgba(255,255,255,.52)">Objetivo: <strong style="color:rgba(255,255,255,.82)">16,000 personas</strong> en condición de pobreza en todo el estado de Sonora.</p>
+      <p class="pquote">"Este programa es público, ajeno a cualquier partido político, asociación religiosa u organización de cualquier otra índole."</p>
     </div>
     <div class="cscard">
-      <h3>Por que son clave los comites de contraloria social?</h3>
+      <h3>¿Por qué son clave los comités de contraloría social?</h3>
       <ul class="cslist">
         <li>Vigilan que los recursos lleguen correctamente a las familias beneficiarias</li>
         <li>Verifican la calidad y oportunidad de los apoyos entregados</li>
         <li>Reciben y canalizan peticiones ciudadanas de la comunidad</li>
         <li>Elaboran y presentan informes de resultados ante las autoridades</li>
-        <li>Garantizan la transparencia y rendicion de cuentas del programa</li>
-        <li>Promueven la participacion activa de la ciudadania en la gestion publica</li>
-        <li>Son el primer nivel de supervision: por y para la comunidad</li>
+        <li>Garantizan la transparencia y rendición de cuentas del programa</li>
+        <li>Promueven la participación activa de la ciudadanía en la gestión pública</li>
+        <li>Son el primer nivel de supervisión: por y para la comunidad</li>
       </ul>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="flogo"><div class="ni"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span>Secretaria de Bienestar - Gobierno de Sonora</span></div>
+  <div class="flogo"><div class="ni"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span>Secretaría de Bienestar - Gobierno de Sonora</span></div>
   <span>bienestar@sonora.gob.mx - (662) 108-3737</span>
-  <span>(c) 2026 Direccion de Participacion Ciudadana</span>
+  <span>(c) 2026 Dirección de Participación Ciudadana</span>
 </footer>
 </div>
 
@@ -404,22 +404,22 @@ table tr:hover td{background:var(--crema)}
   <div class="lw">
     <div class="lc">
       <div style="text-align:center;margin-bottom:1.1rem"><div style="width:46px;height:46px;background:var(--vino);border-radius:11px;display:inline-flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--naranja)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div></div>
-      <h2>Acceso Administrativo</h2><p>Secretaria de Bienestar de Sonora</p>
+      <h2>Acceso Administrativo</h2><p>Secretaría de Bienestar de Sonora</p>
       <div class="lf"><label>Usuario</label><input type="text" id="lu" placeholder="admin"></div>
-      <div class="lf"><label>Contrasena</label><input type="password" id="lp" placeholder="bienestar2026" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="lf"><label>Contraseña</label><input type="password" id="lp" placeholder="bienestar2026" onkeydown="if(event.key==='Enter')doLogin()"></div>
       <div class="lerr" id="lerr"></div>
-      <button class="blo" onclick="doLogin()">Iniciar sesion</button>
-      <div style="text-align:center;margin-top:1rem"><button onclick="showV('pub')" style="background:none;border:none;font-size:12px;color:var(--gris);cursor:pointer;font-family:inherit">Volver al mapa publico</button></div>
+      <button class="blo" onclick="doLogin()">Iniciar sesión</button>
+      <div style="text-align:center;margin-top:1rem"><button onclick="showV('pub')" style="background:none;border:none;font-size:12px;color:var(--gris);cursor:pointer;font-family:inherit">Volver al mapa público</button></div>
     </div>
   </div>
 </div>
 
 <div id="adm" style="display:none">
   <div class="ah">
-    <div><h1>Panel de Administracion</h1><p>Secretaria de Bienestar - Direccion de Participacion Ciudadana</p></div>
+    <div><h1>Panel de Administración</h1><p>Secretaría de Bienestar - Dirección de Participación Ciudadana</p></div>
     <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-      <button class="bout" style="font-family:inherit;font-size:12px;padding:8px 15px;color:var(--vd);border-color:rgba(92,26,46,.25)" onclick="showV('pub')">Mapa publico</button>
-      <button class="bout" style="font-family:inherit;font-size:12px;padding:8px 15px;color:var(--vd);border-color:rgba(92,26,46,.25)" onclick="showV('login')">Cerrar sesion</button>
+      <button class="bout" style="font-family:inherit;font-size:12px;padding:8px 15px;color:var(--vd);border-color:rgba(92,26,46,.25)" onclick="showV('pub')">Mapa público</button>
+      <button class="bout" style="font-family:inherit;font-size:12px;padding:8px 15px;color:var(--vd);border-color:rgba(92,26,46,.25)" onclick="showV('login')">Cerrar sesión</button>
     </div>
   </div>
   <div class="ab">
@@ -427,14 +427,14 @@ table tr:hover td{background:var(--crema)}
       <div class="ast"><div class="astl">Total Comites</div><div class="astv" id="ac">0</div><div class="btr"><div class="btf" id="abf" style="width:0%"></div></div></div>
       <div class="ast"><div class="astl">Municipios Cubiertos</div><div class="astv" id="am">0</div></div>
       <div class="ast"><div class="astl">Integrantes Activos</div><div class="astv" id="ai">0</div></div>
-      <div class="ast"><div class="astl">Meta 35 comites</div><div class="astv" style="color:var(--naranja)" id="ap">0%</div></div>
+      <div class="ast"><div class="astl">Meta 35 comités</div><div class="astv" style="color:var(--naranja)" id="ap">0%</div></div>
     </div>
     <div class="atabs">
-      <button class="atab on" id="tabc" onclick="swTab('c')">Comites registrados</button>
+      <button class="atab on" id="tabc" onclick="swTab('c')">Comités registrados</button>
       <button class="atab" id="tabr" onclick="swTab('r')">Reportes ciudadanos <span id="rbcnt" style="background:var(--fucsia);color:#fff;font-size:10px;padding:1px 7px;border-radius:8px;margin-left:4px;font-weight:700">0</span></button>
     </div>
     <div id="tc">
-      <div class="atbh"><h2>Comites registrados</h2><button class="bpri" onclick="openNew()" style="padding:9px 18px;font-size:13px">+ Nuevo comite</button></div>
+      <div class="atbh"><h2>Comités registrados</h2><button class="bpri" onclick="openNew()" style="padding:9px 18px;font-size:13px">+ Nuevo comité</button></div>
       <table><thead><tr><th>#</th><th>Municipio</th><th>Region</th><th>Fecha</th><th>Presidente/a</th><th>Docs</th><th>Acciones</th></tr></thead><tbody id="atb"></tbody></table>
     </div>
     <div id="tr2" style="display:none">
@@ -446,10 +446,10 @@ table tr:hover td{background:var(--crema)}
 
 <div class="ov" id="det-m">
   <div class="pop">
-    <div class="ph a"><h2 id="dmt">Comite</h2><p id="dms">Contraloria Social</p><button class="pclose" onclick="closeM('det-m')">x</button></div>
+    <div class="ph a"><h2 id="dmt">Comité</h2><p id="dms">Contraloría Social</p><button class="pclose" onclick="closeM('det-m')">x</button></div>
     <div class="pb">
-      <div class="ms"><h4>Informacion general</h4><div id="dmi"></div></div>
-      <div class="ms"><h4>Integrantes del comite</h4><div class="mlist" id="dmm"></div></div>
+      <div class="ms"><h4>Información general</h4><div id="dmi"></div></div>
+      <div class="ms"><h4>Integrantes del comité</h4><div class="mlist" id="dmm"></div></div>
       <div class="ms"><h4>Documentos normativos</h4><div class="dgrid" id="dmd"></div></div>
     </div>
   </div>
@@ -457,39 +457,39 @@ table tr:hover td{background:var(--crema)}
 
 <div class="ov" id="form-m">
   <div class="pop">
-    <div class="ph a"><h2 id="fmt">Registrar comite</h2><p>Secretaria de Bienestar - Contraloria Social</p><button class="pclose" onclick="closeM('form-m')">x</button></div>
+    <div class="ph a"><h2 id="fmt">Registrar comité</h2><p>Secretaría de Bienestar - Contraloría Social</p><button class="pclose" onclick="closeM('form-m')">x</button></div>
     <div class="pb">
       <input type="hidden" id="fmid">
       <div class="ms"><h4>Datos del municipio</h4>
-        <div class="fr"><div class="fg2"><label>Municipio *</label><input type="text" id="fmun" placeholder="Ej. Hermosillo"></div><div class="fg2"><label>Region *</label><select id="freg"><option value="">Seleccionar...</option><option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option></select></div></div>
-        <div class="fr"><div class="fg2"><label>Fecha constitucion *</label><input type="date" id="ffec"></div><div class="fg2"><label>Num. beneficiarios</label><input type="number" id="fben" placeholder="45"></div></div>
+        <div class="fr"><div class="fg2"><label>Municipio *</label><input type="text" id="fmun" placeholder="Ej. Hermosillo"></div><div class="fg2"><label>Región *</label><select id="freg"><option value="">Seleccionar...</option><option>Norte</option><option>Centro</option><option>Sur</option><option>Sierra</option></select></div></div>
+        <div class="fr"><div class="fg2"><label>Fecha constitución *</label><input type="date" id="ffec"></div><div class="fg2"><label>Núm. beneficiarios</label><input type="number" id="fben" placeholder="45"></div></div>
         <div class="fr"><div class="fg2"><label>Latitud</label><input type="number" id="flat" step="0.0001" placeholder="29.0729"></div><div class="fg2"><label>Longitud</label><input type="number" id="flng" step="0.0001" placeholder="-110.9559"></div></div>
       </div>
-      <div class="ms"><h4>Integrantes del comite</h4><div id="fmems"></div></div>
+      <div class="ms"><h4>Integrantes del comité</h4><div id="fmems"></div></div>
       <div class="ms"><h4>Documentos normativos</h4><div class="dug" id="fdocs"></div></div>
-      <div class="mact"><button class="bcan" onclick="closeM('form-m')">Cancelar</button><button class="bsv" onclick="saveC()">Guardar comite</button></div>
+      <div class="mact"><button class="bcan" onclick="closeM('form-m')">Cancelar</button><button class="bsv" onclick="saveC()">Guardar comité</button></div>
     </div>
   </div>
 </div>
 
 <div class="ov" id="rep-m">
   <div class="pop">
-    <div class="ph b"><h2>Reportar irregularidad</h2><p>Contraloria Social - Canal ciudadano confidencial - Programa FEFV</p><button class="pclose" onclick="closeM('rep-m')">x</button></div>
+    <div class="ph b"><h2>Reportar irregularidad</h2><p>Contraloría Social - Canal ciudadano confidencial - Programa FEFV</p><button class="pclose" onclick="closeM('rep-m')">x</button></div>
     <div class="pb"><div id="rep-cnt">
-      <div style="background:rgba(92,26,46,.05);border-left:3px solid var(--fucsia);border-radius:0 7px 7px 0;padding:.65rem .85rem;margin-bottom:1.15rem;font-size:13px;color:var(--gris);line-height:1.65">Tu reporte es <strong style="color:var(--vd)">estrictamente confidencial</strong> y sera atendido en maximo <strong style="color:var(--vd)">5 dias habiles</strong>.</div>
+      <div style="background:rgba(92,26,46,.05);border-left:3px solid var(--fucsia);border-radius:0 7px 7px 0;padding:.65rem .85rem;margin-bottom:1.15rem;font-size:13px;color:var(--gris);line-height:1.65">Tu reporte es <strong style="color:var(--vd)">estrictamente confidencial</strong> y será atendido en máximo <strong style="color:var(--vd)">5 días hábiles</strong>.</div>
       <div class="ms"><h4>Tipo de irregularidad *</h4>
         <div class="rg">
-          <label class="ro"><input type="radio" name="tipo" value="Desvio de recursos"> Desvio o mal uso de recursos del programa</label>
-          <label class="ro"><input type="radio" name="tipo" value="Exclusion injustificada"> Exclusion injustificada de beneficiarios</label>
-          <label class="ro"><input type="radio" name="tipo" value="Uso politico"> Uso politico del programa</label>
+          <label class="ro"><input type="radio" name="tipo" value="Desvío de recursos"> Desvío o mal uso de recursos del programa</label>
+          <label class="ro"><input type="radio" name="tipo" value="Exclusión injustificada"> Exclusión injustificada de beneficiarios</label>
+          <label class="ro"><input type="radio" name="tipo" value="Uso político"> Uso político del programa</label>
           <label class="ro"><input type="radio" name="tipo" value="Cobro indebido"> Cobro indebido a beneficiarios</label>
           <label class="ro"><input type="radio" name="tipo" value="Trato inadecuado"> Trato inadecuado del personal</label>
           <label class="ro"><input type="radio" name="tipo" value="Otro"> Otro tipo de irregularidad</label>
         </div>
       </div>
       <div class="fr"><div class="fg2"><label>Municipio</label><select id="rmun"><option value="">Seleccionar...</option></select></div><div class="fg2"><label>Fecha del hecho</label><input type="date" id="rfec"></div></div>
-      <div class="fr full"><div class="fg2"><label>Descripcion detallada *</label><textarea id="rdesc" rows="4" placeholder="Describe con detalle lo que ocurrio..."></textarea></div></div>
-      <div class="fr"><div class="fg2"><label>Tu nombre (opcional)</label><input type="text" id="rnomb" placeholder="Anonimo si prefieres"></div><div class="fg2"><label>Contacto (opcional)</label><input type="text" id="rcont" placeholder="Telefono o correo"></div></div>
+      <div class="fr full"><div class="fg2"><label>Descripción detallada *</label><textarea id="rdesc" rows="4" placeholder="Describe con detalle lo que ocurrió..."></textarea></div></div>
+      <div class="fr"><div class="fg2"><label>Tu nombre (opcional)</label><input type="text" id="rnomb" placeholder="Anónimo si prefieres"></div><div class="fg2"><label>Contacto (opcional)</label><input type="text" id="rcont" placeholder="Teléfono o correo"></div></div>
       <div class="mact"><button class="bcan" onclick="closeM('rep-m')">Cancelar</button><button class="bsv" onclick="subRep()">Enviar reporte</button></div>
     </div></div>
   </div>
@@ -497,16 +497,16 @@ table tr:hover td{background:var(--crema)}
 
 <div class="ov" id="repd-m">
   <div class="pop wide">
-    <div class="ph b"><h2 id="rdmt">Reporte ciudadano</h2><p id="rdms">Contraloria Social - Seguimiento</p><button class="pclose" onclick="closeM('repd-m')">x</button></div>
+    <div class="ph b"><h2 id="rdmt">Reporte ciudadano</h2><p id="rdms">Contraloría Social - Seguimiento</p><button class="pclose" onclick="closeM('repd-m')">x</button></div>
     <div class="pb">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.3rem">
         <div>
-          <div class="ms"><h4>Informacion del reporte</h4><div id="rdmi"></div></div>
-          <div class="ms"><h4>Descripcion del ciudadano</h4><div id="rdmdesc" style="font-size:13.5px;line-height:1.7;color:#2C1810;background:var(--crema);border-radius:9px;padding:.85rem;border-left:3px solid var(--fucsia)"></div></div>
+          <div class="ms"><h4>Información del reporte</h4><div id="rdmi"></div></div>
+          <div class="ms"><h4>Descripción del ciudadano</h4><div id="rdmdesc" style="font-size:13.5px;line-height:1.7;color:#2C1810;background:var(--crema);border-radius:9px;padding:.85rem;border-left:3px solid var(--fucsia)"></div></div>
         </div>
         <div>
           <div class="ms"><h4>Estado y seguimiento</h4>
-            <div class="fg2" style="margin-bottom:.65rem"><label>Estado del reporte</label><select id="rdmst"><option value="Pendiente">Pendiente</option><option value="En revision">En revision</option><option value="Atendido">Atendido</option><option value="Cerrado">Cerrado</option></select></div>
+            <div class="fg2" style="margin-bottom:.65rem"><label>Estado del reporte</label><select id="rdmst"><option value="Pendiente">Pendiente</option><option value="En revisión">En revisión</option><option value="Atendido">Atendido</option><option value="Cerrado">Cerrado</option></select></div>
             <div class="fg2" style="margin-bottom:.65rem"><label>Responsable asignado</label><input type="text" id="rdmrsp" placeholder="Nombre del funcionario responsable"></div>
             <div class="fg2"><label>Notas de seguimiento</label><textarea id="rdmnot" rows="4" placeholder="Acciones tomadas, observaciones..."></textarea></div>
           </div>
@@ -530,39 +530,58 @@ table tr:hover td{background:var(--crema)}
 
 <div class="toast" id="toast"></div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" onerror="var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js';s.onload=function(){if(typeof showV==='function')showV(document.getElementById('adm').style.display==='none'&&document.getElementById('login').style.display==='none'?'pub':'pub');};document.head.appendChild(s);"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const ROLES=['Presidente/a','Secretario/a','Vocal 1','Vocal 2','Vocal 3','Vocal 4','Vocal 5'];
 const DK=['acta','asistencia','peticion','solicitud','ficha','minuta'];
-const DL={acta:'Acta Constitutiva',asistencia:'Lista de Asistencia',peticion:'Peticion Ciudadana',solicitud:'Solicitud de Informacion',ficha:'Ficha Tecnica',minuta:'Minuta de Reunion'};
-const CRD={Hermosillo:[29.0729,-110.9559],Navojoa:[27.073,-109.4411],Huatabampo:[26.8286,-109.6369],Etchojoa:[26.9067,-109.6436],Quiriego:[27.4894,-109.2361],Bacanora:[29.1996,-109.3994],'San Pedro de la Cueva':[29.2909,-109.7564],Bacoachi:[30.6072,-109.9686],Aconchi:[29.8334,-110.2271],Arizpe:[30.3333,-110.1667],'Banamichi':[29.9833,-110.2167],'Baviacora':[29.7014,-110.1653],'Huepac':[29.9031,-110.2289]};
+const DL={acta:'Acta Constitutiva',asistencia:'Lista de Asistencia',peticion:'Petición Ciudadana',solicitud:'Solicitud de Información',ficha:'Ficha Técnica',minuta:'Minuta de Reunión'};
+const CRD={Hermosillo:[29.0729,-110.9559],Navojoa:[27.073,-109.4411],Huatabampo:[26.8286,-109.6369],Etchojoa:[26.9067,-109.6436],Quiriego:[27.4894,-109.2361],Bacanora:[29.1996,-109.3994],'San Pedro de la Cueva':[29.2909,-109.7564],Bacoachi:[30.6072,-109.9686],Aconchi:[29.8334,-110.2271],Arizpe:[30.3333,-110.1667],'Banámichi':[29.9833,-110.2167],'Baviácora':[29.7014,-110.1653],'Huépac':[29.9031,-110.2289]};
 
 const INIT=[
-  {id:1,municipio:'Hermosillo',region:'Centro',fecha:'2025-03-10',beneficiarios:312,integrantes:[{rol:'Presidente/a',nombre:'Maria Elena Ruiz Soto'},{rol:'Secretario/a',nombre:'Jorge Fuentes Medina'},{rol:'Vocal 1',nombre:'Ana Lopez Garcia'},{rol:'Vocal 2',nombre:'Carlos Mendoza Torres'},{rol:'Vocal 3',nombre:'Lucia Romero Diaz'},{rol:'Vocal 4',nombre:'Pedro Sanchez Vega'},{rol:'Vocal 5',nombre:'Rosa Trujillo Pena'}],uploads:{}},
-  {id:2,municipio:'Navojoa',region:'Sur',fecha:'2025-03-22',beneficiarios:89,integrantes:[{rol:'Presidente/a',nombre:'Gabriela Morales Ibarra'},{rol:'Secretario/a',nombre:'Tomas Espinoza Leyva'},{rol:'Vocal 1',nombre:'Elvira Castro Nunez'},{rol:'Vocal 2',nombre:'Ramon Flores Quiroz'},{rol:'Vocal 3',nombre:'Silvia Ojeda Bernal'},{rol:'Vocal 4',nombre:'Andres Velarde Cota'},{rol:'Vocal 5',nombre:'Carmen Bojorquez Ruiz'}],uploads:{}},
-  {id:3,municipio:'Huatabampo',region:'Sur',fecha:'2025-04-05',beneficiarios:67,integrantes:[{rol:'Presidente/a',nombre:'Enrique Valenzuela Gaxiola'},{rol:'Secretario/a',nombre:'Patricia Acosta Millanes'},{rol:'Vocal 1',nombre:'Humberto Leon Salazar'},{rol:'Vocal 2',nombre:'Martha Parra Corrales'},{rol:'Vocal 3',nombre:'Isidro Cuen Felix'},{rol:'Vocal 4',nombre:'Veronica Zazueta Angulo'},{rol:'Vocal 5',nombre:'Miguel Leyva Borquez'}],uploads:{}},
-  {id:4,municipio:'Etchojoa',region:'Sur',fecha:'2025-04-12',beneficiarios:54,integrantes:[{rol:'Presidente/a',nombre:'Rosario Buitimea Moroyoqui'},{rol:'Secretario/a',nombre:'Felipe Yocupicio Alvarez'},{rol:'Vocal 1',nombre:'Nadia Yepez Rojo'},{rol:'Vocal 2',nombre:'Orlando Meza Tehueco'},{rol:'Vocal 3',nombre:'Guadalupe Soto Aviles'},{rol:'Vocal 4',nombre:'Roberto Borbon Murrieta'},{rol:'Vocal 5',nombre:'Esperanza Cobos Valenzuela'}],uploads:{}},
-  {id:5,municipio:'Quiriego',region:'Sur',fecha:'2025-04-18',beneficiarios:33,integrantes:[{rol:'Presidente/a',nombre:'Lorena Celaya Aguilar'},{rol:'Secretario/a',nombre:'Abel Torres Rodriguez'},{rol:'Vocal 1',nombre:'Claudia Sauceda Meza'},{rol:'Vocal 2',nombre:'Ernesto Olea Parra'},{rol:'Vocal 3',nombre:'Yolanda Zayas Cruz'},{rol:'Vocal 4',nombre:'David Fontes Garcia'},{rol:'Vocal 5',nombre:'Irene Palomares Buitimea'}],uploads:{}},
-  {id:6,municipio:'Bacanora',region:'Sierra',fecha:'2025-05-02',beneficiarios:28,integrantes:[{rol:'Presidente/a',nombre:'Salvador Quijada Arvayo'},{rol:'Secretario/a',nombre:'Alicia Durazo Mendivil'},{rol:'Vocal 1',nombre:'Ciro Borbon Robles'},{rol:'Vocal 2',nombre:'Francisca Badea Verdugo'},{rol:'Vocal 3',nombre:'Jesus Zazueta Quijada'},{rol:'Vocal 4',nombre:'Trinidad Lopez Ochoa'},{rol:'Vocal 5',nombre:'Rigoberto Alvarez Caro'}],uploads:{}},
-  {id:7,municipio:'San Pedro de la Cueva',region:'Sierra',fecha:'2025-05-08',beneficiarios:26,integrantes:[{rol:'Presidente/a',nombre:'Concepcion Valenzuela Manriquez'},{rol:'Secretario/a',nombre:'Benito Ruiz Celaya'},{rol:'Vocal 1',nombre:'Amalia Castro Gil'},{rol:'Vocal 2',nombre:'Fidel Moreno Soto'},{rol:'Vocal 3',nombre:'Dulce Corrales Montano'},{rol:'Vocal 4',nombre:'Marco Arvizu Badea'},{rol:'Vocal 5',nombre:'Luz Salazar Orrantia'}],uploads:{}},
-  {id:8,municipio:'Bacoachi',region:'Norte',fecha:'2025-05-15',beneficiarios:29,integrantes:[{rol:'Presidente/a',nombre:'Fermin Grijalva Duarte'},{rol:'Secretario/a',nombre:'Sandra Mendoza Encinas'},{rol:'Vocal 1',nombre:'Alfredo Valenzuela Camou'},{rol:'Vocal 2',nombre:'Rosalba Ceballos Manez'},{rol:'Vocal 3',nombre:'Luis Bernal Grijalva'},{rol:'Vocal 4',nombre:'Gloria Urrea Meza'},{rol:'Vocal 5',nombre:'Rene Borquez Torres'}],uploads:{}},
-  {id:9,municipio:'Aconchi',region:'Centro',fecha:'2025-05-20',beneficiarios:31,integrantes:[{rol:'Presidente/a',nombre:'Hortensia Soto Robles'},{rol:'Secretario/a',nombre:'Daniel Peralta Ramos'},{rol:'Vocal 1',nombre:'Cecilia Montano Dorame'},{rol:'Vocal 2',nombre:'Oscar Ruiz Galvez'},{rol:'Vocal 3',nombre:'Norma Lugo Contreras'},{rol:'Vocal 4',nombre:'Rafael Ortega Grijalva'},{rol:'Vocal 5',nombre:'Beatriz Salido Felix'}],uploads:{}},
-  {id:10,municipio:'Arizpe',region:'Norte',fecha:'2025-05-25',beneficiarios:27,integrantes:[{rol:'Presidente/a',nombre:'Edelmira Corral Robles'},{rol:'Secretario/a',nombre:'Ignacio Salazar Borbon'},{rol:'Vocal 1',nombre:'Sonia Campa Meza'},{rol:'Vocal 2',nombre:'Felix Grijalva Verdugo'},{rol:'Vocal 3',nombre:'Pilar Lugo Gil'},{rol:'Vocal 4',nombre:'Aurelio Celaya Bojorquez'},{rol:'Vocal 5',nombre:'Lidia Angulo Oroz'}],uploads:{}},
-  {id:11,municipio:'Banamichi',region:'Centro',fecha:'2025-06-01',beneficiarios:28,integrantes:[{rol:'Presidente/a',nombre:'Heriberto Camou Montano'},{rol:'Secretario/a',nombre:'Ernestina Valenzuela Salazar'},{rol:'Vocal 1',nombre:'Vladimir Robles Meza'},{rol:'Vocal 2',nombre:'Antonia Bracamonte Ruiz'},{rol:'Vocal 3',nombre:'Nestor Encinas Badea'},{rol:'Vocal 4',nombre:'Consuelo Torres Salido'},{rol:'Vocal 5',nombre:'Margarita Zazueta Aragon'}],uploads:{}},
-  {id:12,municipio:'Baviacora',region:'Centro',fecha:'2025-06-05',beneficiarios:32,integrantes:[{rol:'Presidente/a',nombre:'Arcelia Bracamonte Valenzuela'},{rol:'Secretario/a',nombre:'Francisco Durazo Quiroz'},{rol:'Vocal 1',nombre:'Milagros Ochoa Robles'},{rol:'Vocal 2',nombre:'Josue Grijalva Encinas'},{rol:'Vocal 3',nombre:'Victoria Celaya Corrales'},{rol:'Vocal 4',nombre:'Genaro Angulo Bojorquez'},{rol:'Vocal 5',nombre:'Marisol Meza Bernal'}],uploads:{}},
-  {id:13,municipio:'Huepac',region:'Centro',fecha:'2025-06-10',beneficiarios:26,integrantes:[{rol:'Presidente/a',nombre:'Sebastian Moreno Dorame'},{rol:'Secretario/a',nombre:'Alondra Soto Camou'},{rol:'Vocal 1',nombre:'Camilo Bracamonte Gil'},{rol:'Vocal 2',nombre:'Rebeca Valenzuela Angulo'},{rol:'Vocal 3',nombre:'Hugo Celaya Meza'},{rol:'Vocal 4',nombre:'Piedad Meza Torres'},{rol:'Vocal 5',nombre:'Cristobal Salazar Robles'}],uploads:{}}
+  {id:1,municipio:'Hermosillo',region:'Centro',fecha:'2025-03-10',beneficiarios:312,integrantes:[{rol:'Presidente/a',nombre:'María Elena Ruiz Soto'},{rol:'Secretario/a',nombre:'Jorge Fuentes Medina'},{rol:'Vocal 1',nombre:'Ana Lopez Garcia'},{rol:'Vocal 2',nombre:'Carlos Mendoza Torres'},{rol:'Vocal 3',nombre:'Lucía Romero Díaz'},{rol:'Vocal 4',nombre:'Pedro Sánchez Vega'},{rol:'Vocal 5',nombre:'Rosa Trujillo Peña'}],uploads:{}},
+  {id:2,municipio:'Navojoa',region:'Sur',fecha:'2025-03-22',beneficiarios:89,integrantes:[{rol:'Presidente/a',nombre:'Gabriela Morales Ibarra'},{rol:'Secretario/a',nombre:'Tomás Espinoza Leyva'},{rol:'Vocal 1',nombre:'Elvira Castro Núñez'},{rol:'Vocal 2',nombre:'Ramón Flores Quiroz'},{rol:'Vocal 3',nombre:'Silvia Ojeda Bernal'},{rol:'Vocal 4',nombre:'Andrés Velarde Cota'},{rol:'Vocal 5',nombre:'Carmen Bojórquez Ruiz'}],uploads:{}},
+  {id:3,municipio:'Huatabampo',region:'Sur',fecha:'2025-04-05',beneficiarios:67,integrantes:[{rol:'Presidente/a',nombre:'Enrique Valenzuela Gaxiola'},{rol:'Secretario/a',nombre:'Patricia Acosta Millanes'},{rol:'Vocal 1',nombre:'Humberto León Salazar'},{rol:'Vocal 2',nombre:'Martha Parra Corrales'},{rol:'Vocal 3',nombre:'Isidro Cuén Félix'},{rol:'Vocal 4',nombre:'Verónica Zazueta Angulo'},{rol:'Vocal 5',nombre:'Miguel Leyva Bórquez'}],uploads:{}},
+  {id:4,municipio:'Etchojoa',region:'Sur',fecha:'2025-04-12',beneficiarios:54,integrantes:[{rol:'Presidente/a',nombre:'Rosario Buitimea Moroyoqui'},{rol:'Secretario/a',nombre:'Felipe Yocupicio Álvarez'},{rol:'Vocal 1',nombre:'Nadia Yépez Rojo'},{rol:'Vocal 2',nombre:'Orlando Meza Tehueco'},{rol:'Vocal 3',nombre:'Guadalupe Soto Avilés'},{rol:'Vocal 4',nombre:'Roberto Borbon Murrieta'},{rol:'Vocal 5',nombre:'Esperanza Cobos Valenzuela'}],uploads:{}},
+  {id:5,municipio:'Quiriego',region:'Sur',fecha:'2025-04-18',beneficiarios:33,integrantes:[{rol:'Presidente/a',nombre:'Lorena Celaya Aguilar'},{rol:'Secretario/a',nombre:'Abel Torres Rodríguez'},{rol:'Vocal 1',nombre:'Claudia Sauceda Meza'},{rol:'Vocal 2',nombre:'Ernesto Olea Parra'},{rol:'Vocal 3',nombre:'Yolanda Zayas Cruz'},{rol:'Vocal 4',nombre:'David Fontes García'},{rol:'Vocal 5',nombre:'Irene Palomares Buitimea'}],uploads:{}},
+  {id:6,municipio:'Bacanora',region:'Sierra',fecha:'2025-05-02',beneficiarios:28,integrantes:[{rol:'Presidente/a',nombre:'Salvador Quijada Arvayo'},{rol:'Secretario/a',nombre:'Alicia Durazo Mendívil'},{rol:'Vocal 1',nombre:'Ciro Borbon Robles'},{rol:'Vocal 2',nombre:'Francisca Badea Verdugo'},{rol:'Vocal 3',nombre:'Jesús Zazueta Quijada'},{rol:'Vocal 4',nombre:'Trinidad Lopez Ochoa'},{rol:'Vocal 5',nombre:'Rigoberto Alvarez Caro'}],uploads:{}},
+  {id:7,municipio:'San Pedro de la Cueva',region:'Sierra',fecha:'2025-05-08',beneficiarios:26,integrantes:[{rol:'Presidente/a',nombre:'Concepción Valenzuela Manríquez'},{rol:'Secretario/a',nombre:'Benito Ruíz Celaya'},{rol:'Vocal 1',nombre:'Amalia Castro Gil'},{rol:'Vocal 2',nombre:'Fidel Moreno Soto'},{rol:'Vocal 3',nombre:'Dulce Corrales Montaño'},{rol:'Vocal 4',nombre:'Marco Arvizu Badea'},{rol:'Vocal 5',nombre:'Luz Salazar Orrantia'}],uploads:{}},
+  {id:8,municipio:'Bacoachi',region:'Norte',fecha:'2025-05-15',beneficiarios:29,integrantes:[{rol:'Presidente/a',nombre:'Fermín Grijalva Duarte'},{rol:'Secretario/a',nombre:'Sandra Mendoza Encinas'},{rol:'Vocal 1',nombre:'Alfredo Valenzuela Camou'},{rol:'Vocal 2',nombre:'Rosalba Ceballos Mañez'},{rol:'Vocal 3',nombre:'Luis Bernal Grijalva'},{rol:'Vocal 4',nombre:'Gloria Urrea Meza'},{rol:'Vocal 5',nombre:'Rene Borquez Torres'}],uploads:{}},
+  {id:9,municipio:'Aconchi',region:'Centro',fecha:'2025-05-20',beneficiarios:31,integrantes:[{rol:'Presidente/a',nombre:'Hortensia Soto Robles'},{rol:'Secretario/a',nombre:'Daniel Peralta Ramos'},{rol:'Vocal 1',nombre:'Cecilia Montaño Dorame'},{rol:'Vocal 2',nombre:'Óscar Ruiz Gálvez'},{rol:'Vocal 3',nombre:'Norma Lugo Contreras'},{rol:'Vocal 4',nombre:'Rafael Ortega Grijalva'},{rol:'Vocal 5',nombre:'Beatriz Salido Félix'}],uploads:{}},
+  {id:10,municipio:'Arizpe',region:'Norte',fecha:'2025-05-25',beneficiarios:27,integrantes:[{rol:'Presidente/a',nombre:'Edelmira Corral Robles'},{rol:'Secretario/a',nombre:'Ignacio Salazar Borbon'},{rol:'Vocal 1',nombre:'Sonia Campa Meza'},{rol:'Vocal 2',nombre:'Félix Grijalva Verdugo'},{rol:'Vocal 3',nombre:'Pilar Lugo Gil'},{rol:'Vocal 4',nombre:'Aurelio Celaya Bojórquez'},{rol:'Vocal 5',nombre:'Lidia Angulo Oroz'}],uploads:{}},
+  {id:11,municipio:'Banámichi',region:'Centro',fecha:'2025-06-01',beneficiarios:28,integrantes:[{rol:'Presidente/a',nombre:'Heriberto Camou Montaño'},{rol:'Secretario/a',nombre:'Ernestina Valenzuela Salazar'},{rol:'Vocal 1',nombre:'Vladimir Robles Meza'},{rol:'Vocal 2',nombre:'Antonia Bracamonte Ruiz'},{rol:'Vocal 3',nombre:'Néstor Encinas Badea'},{rol:'Vocal 4',nombre:'Consuelo Torres Salido'},{rol:'Vocal 5',nombre:'Margarita Zazueta Aragón'}],uploads:{}},
+  {id:12,municipio:'Baviácora',region:'Centro',fecha:'2025-06-05',beneficiarios:32,integrantes:[{rol:'Presidente/a',nombre:'Arcelia Bracamonte Valenzuela'},{rol:'Secretario/a',nombre:'Francisco Durazo Quiroz'},{rol:'Vocal 1',nombre:'Milagros Ochoa Robles'},{rol:'Vocal 2',nombre:'Josué Grijalva Encinas'},{rol:'Vocal 3',nombre:'Victoria Celaya Corrales'},{rol:'Vocal 4',nombre:'Genaro Angulo Bojorquez'},{rol:'Vocal 5',nombre:'Marisol Meza Bernal'}],uploads:{}},
+  {id:13,municipio:'Huépac',region:'Centro',fecha:'2025-06-10',beneficiarios:26,integrantes:[{rol:'Presidente/a',nombre:'Sebastián Moreno Dorame'},{rol:'Secretario/a',nombre:'Alondra Soto Camou'},{rol:'Vocal 1',nombre:'Camilo Bracamonte Gil'},{rol:'Vocal 2',nombre:'Rebeca Valenzuela Angulo'},{rol:'Vocal 3',nombre:'Hugo Celaya Meza'},{rol:'Vocal 4',nombre:'Piedad Meza Torres'},{rol:'Vocal 5',nombre:'Cristóbal Salazar Robles'}],uploads:{}}
 ];
 
 let DATA=[],REPS=[],NID=100,NRID=1000,EID=null,ERID=null,PD={},B={};
-let LM=null,MK={};
+let LM=null,MK={},MUNLAYER=null;
 
 function load(){
   try{
-    const d=localStorage.getItem('cs_def_v1');DATA=d?JSON.parse(d):INIT.map(function(c){return Object.assign({},c,{uploads:Object.assign({},c.uploads)});});
-    const r=localStorage.getItem('cs_rep_v1');REPS=r?JSON.parse(r):[];
+    const d=localStorage.getItem('cs_def_v2');DATA=d?JSON.parse(d):INIT.map(function(c){return Object.assign({},c,{uploads:Object.assign({},c.uploads)});});
+    const r=localStorage.getItem('cs_rep_v2');REPS=r?JSON.parse(r):[];
   }catch(e){DATA=INIT.map(function(c){return Object.assign({},c,{uploads:{}});});REPS=[];}
+  // Rehidratar B{} desde los datos guardados (uploads con data URL en base64)
+  DATA.forEach(function(c){
+    if(!c.uploads)return;
+    DK.forEach(function(k){
+      const u=c.uploads[k];
+      if(u && typeof u==='object' && u.data){
+        B[c.id+'_'+k]={url:u.data,name:u.name,type:u.type};
+      }
+    });
+  });
+  REPS.forEach(function(r){
+    (r.ev||[]).forEach(function(e,i){
+      if(e && e.data){
+        B['rep_'+r.id+'_'+i]={url:e.data,name:e.name,type:e.type};
+      }
+    });
+  });
 }
-function save(){try{localStorage.setItem('cs_def_v1',JSON.stringify(DATA));localStorage.setItem('cs_rep_v1',JSON.stringify(REPS));}catch(e){}}
+function save(){try{localStorage.setItem('cs_def_v2',JSON.stringify(DATA));localStorage.setItem('cs_rep_v2',JSON.stringify(REPS));}catch(e){
+  toast('Aviso: algunos archivos son muy grandes para guardarse permanentemente');
+}}
 
 function showV(v){
   ['pub','login','adm'].forEach(function(id){
@@ -582,7 +601,7 @@ function goTo(id){
 function doLogin(){
   const u=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value;
   if((u==='admin'&&p==='bienestar2026')||(u.length>3&&p.length>=4)){document.getElementById('lerr').textContent='';showV('adm');}
-  else document.getElementById('lerr').textContent='Usuario o contrasena incorrectos.';
+  else document.getElementById('lerr').textContent='Usuario o contraseña incorrecta.';
 }
 
 function fD(d){if(!d)return '-';try{const parts=d.split('-');const y=parts[0],m=parts[1],dy=parts[2];const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return parseInt(dy)+' '+ms[parseInt(m)-1]+' '+y;}catch(e){return d;}}
@@ -607,7 +626,7 @@ function renderL(){
     const dc=DK.filter(function(k){return B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);}).length;
     const docsHtml=DK.map(function(k){const h=B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);return '<span class="dtag '+(h?'ok':'no')+'">'+DL[k]+'</span>';}).join('');
     return '<div class="ccard" onclick="openDet('+c.id+')">'+
-      '<div class="ctop"><div><div class="cmun">'+c.municipio+'</div><div class="creg">Region '+(c.region||'-')+'</div></div><span class="cbdg">'+dc+'/6 docs</span></div>'+
+      '<div class="ctop"><div><div class="cmun">'+c.municipio+'</div><div class="creg">Región '+(c.region||'-')+'</div></div><span class="cbdg">'+dc+'/6 docs</span></div>'+
       '<div class="cmeta"><span>Fecha: '+fD(c.fecha)+'</span><span>7 integrantes</span><span>'+(c.beneficiarios||'-')+' familias</span></div>'+
       '<div class="cchips"><span class="chip p">Pres: '+prName+'</span><span class="chip">Sec: '+scName+'</span></div>'+
       '<div class="cdocs">'+docsHtml+'</div>'+
@@ -628,16 +647,7 @@ function mkIcon(){
 
 function buildMap(){
   if(LM){placeMarkers();setTimeout(function(){LM.invalidateSize();},150);return;}
-  if(typeof L==='undefined'){
-    window.__mapRetries=(window.__mapRetries||0)+1;
-    if(window.__mapRetries>60){
-      var mf=document.getElementById('map-fallback');
-      if(mf) mf.innerHTML='No se pudo cargar la libreria Leaflet (sin conexion a internet o CDN bloqueado).<br><span style=\"font-size:11px;opacity:.7\">Verifica tu conexion y recarga la pagina.</span>';
-      return;
-    }
-    setTimeout(buildMap,150);return;
-  }
-  var mf=document.getElementById('map-fallback');if(mf)mf.remove();
+  if(typeof L==='undefined'){setTimeout(buildMap,150);return;}
   LM=L.map('map',{center:[29.0,-110.3],zoom:6,zoomControl:true});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
     attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
@@ -647,16 +657,30 @@ function buildMap(){
     'https://raw.githubusercontent.com/angelnmara/geojson/master/sonoraMunicipios.json',
     'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/sonora.geojson'
   ];
+  function normMun(s){
+    return (s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+  }
   function tryG(i){
     if(i>=geos.length)return;
     fetch(geos[i]).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(geo){
-      L.geoJSON(geo,{
-        style:function(){return {color:'#D4006A',weight:1.2,fillColor:'rgba(212,0,106,0.04)',fillOpacity:1,opacity:.55};},
+      const activeMuns=new Set(DATA.map(function(c){return normMun(c.municipio);}));
+      MUNLAYER=L.geoJSON(geo,{
+        style:function(f){
+          const nm=normMun((f.properties&&(f.properties.NOMGEO||f.properties.name||f.properties.NAME))||'');
+          const active=activeMuns.has(nm);
+          return active
+            ? {color:'#D4006A',weight:1.6,fillColor:'#D4006A',fillOpacity:.16,opacity:.85}
+            : {color:'#D4006A',weight:1,fillColor:'rgba(212,0,106,0.03)',fillOpacity:1,opacity:.35};
+        },
         onEachFeature:function(f,layer){
           const nm=(f.properties&&(f.properties.NOMGEO||f.properties.name||f.properties.NAME))||'';
-          if(nm) layer.bindTooltip(nm,{permanent:false,direction:'center',opacity:.92});
-          layer.on('mouseover',function(){layer.setStyle({fillColor:'rgba(212,0,106,0.1)',weight:2});});
-          layer.on('mouseout',function(){layer.setStyle({fillColor:'rgba(212,0,106,0.04)',weight:1.2});});
+          const active=activeMuns.has(normMun(nm));
+          const baseFill=active?.16:.03;
+          const baseW=active?1.6:1;
+          const baseOp=active?.85:.35;
+          if(nm) layer.bindTooltip(nm+(active?' - Comite activo':''),{permanent:false,direction:'center',opacity:.92});
+          layer.on('mouseover',function(){layer.setStyle({fillOpacity:active?.28:.1,weight:active?2.2:1.6});});
+          layer.on('mouseout',function(){layer.setStyle({fillOpacity:baseFill,weight:baseW,opacity:baseOp});});
         }
       }).addTo(LM);
     }).catch(function(){tryG(i+1);});
@@ -677,13 +701,28 @@ function placeMarkers(){
     const dc=DK.filter(function(k){return B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);}).length;
     const html='<div style="font-family:Inter,system-ui,sans-serif;min-width:200px;line-height:1.5">'+
       '<div style="font-family:\'Playfair Display\',Georgia,serif;font-size:.98rem;color:#3D1020;font-weight:700;margin-bottom:3px">'+c.municipio+'</div>'+
-      '<div style="font-size:11px;color:#6B5B50;margin-bottom:6px">Region '+(c.region||'-')+' - '+fD(c.fecha)+'</div>'+
+      '<div style="font-size:11px;color:#6B5B50;margin-bottom:6px">Región '+(c.region||'-')+' - '+fD(c.fecha)+'</div>'+
       '<div style="font-size:12px;color:#2C1810;margin-bottom:2px"><span style="color:#6B5B50;font-weight:500">Presidente/a:</span> '+prName+'</div>'+
       '<div style="font-size:12px;color:#2C1810;margin-bottom:8px"><span style="color:#6B5B50;font-weight:500">Docs:</span> '+dc+'/6 - <span style="color:#6B5B50;font-weight:500">Familias:</span> '+(c.beneficiarios||'-')+'</div>'+
       '<button onclick="openDet('+c.id+')" style="background:#5C1A2E;color:#fff;border:none;border-radius:14px;padding:6px 15px;font-size:11.5px;cursor:pointer;font-family:inherit;font-weight:500">Ver ficha completa</button>'+
     '</div>';
     m.bindPopup(html,{maxWidth:260});
     MK[c.id]=m;
+  });
+}
+
+
+function restyleMunicipalities(){
+  if(!MUNLAYER)return;
+  function normMun(s){return (s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();}
+  const activeMuns=new Set(DATA.map(function(c){return normMun(c.municipio);}));
+  MUNLAYER.eachLayer(function(layer){
+    const f=layer.feature;
+    const nm=normMun((f&&f.properties&&(f.properties.NOMGEO||f.properties.name||f.properties.NAME))||'');
+    const active=activeMuns.has(nm);
+    layer.setStyle(active
+      ? {color:'#D4006A',weight:1.6,fillColor:'#D4006A',fillOpacity:.16,opacity:.85}
+      : {color:'#D4006A',weight:1,fillColor:'rgba(212,0,106,0.03)',fillOpacity:1,opacity:.35});
   });
 }
 
@@ -704,19 +743,19 @@ function clearF(){['fis','fir','fim'].forEach(function(id){document.getElementBy
 
 function openDet(id){
   const c=DATA.filter(function(x){return x.id===id;})[0];if(!c)return;
-  document.getElementById('dmt').textContent='Comite - '+c.municipio;
-  document.getElementById('dms').textContent='Region '+(c.region||'-')+' - Constituido el '+fD(c.fecha);
+  document.getElementById('dmt').textContent='Comité - '+c.municipio;
+  document.getElementById('dms').textContent='Región '+(c.region||'-')+' - Constituido el '+fD(c.fecha);
   document.getElementById('dmi').innerHTML=
     '<div class="ir"><span class="ik">Municipio</span><span class="iv">'+c.municipio+'</span></div>'+
-    '<div class="ir"><span class="ik">Region</span><span class="iv">'+(c.region||'-')+'</span></div>'+
-    '<div class="ir"><span class="ik">Fecha de constitucion</span><span class="iv">'+fD(c.fecha)+'</span></div>'+
+    '<div class="ir"><span class="ik">Región</span><span class="iv">'+(c.region||'-')+'</span></div>'+
+    '<div class="ir"><span class="ik">Fecha de constitución</span><span class="iv">'+fD(c.fecha)+'</span></div>'+
     '<div class="ir"><span class="ik">Familias beneficiadas</span><span class="iv">'+(c.beneficiarios||'-')+'</span></div>'+
     '<div class="ir"><span class="ik">Total integrantes</span><span class="iv">7 (1 presidente/a, 1 secretario/a, 5 vocales)</span></div>';
   document.getElementById('dmm').innerHTML=(c.integrantes||[]).map(function(m){
     return '<div class="mrow"><span class="mrole">'+m.rol+'</span><span class="mname">'+(m.nombre||'-')+'</span></div>';
   }).join('');
   document.getElementById('dmd').innerHTML=DK.map(function(k){
-    const b=B[c.id+'_'+k];const n=(c.uploads&&c.uploads[k])||(b&&b.name);const h=!!b||!!(c.uploads&&c.uploads[k]);
+    const b=B[c.id+'_'+k];const uo=c.uploads&&c.uploads[k];const n=(uo&&uo.name)||(b&&b.name);const h=!!b||!!uo;
     const icon='<div class="dico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>';
     return '<div class="di '+(h?'ok':'miss')+'" onclick="'+(h?('viewDoc('+c.id+',\''+k+'\')'):'')+'" style="'+(h?'':'cursor:default')+'">'+icon+
       '<div><div style="font-size:11.5px;font-weight:600">'+DL[k]+'</div><div style="font-size:9.5px;opacity:.72;margin-top:1px">'+(h?(n||'Ver'):'Pendiente')+'</div></div>'+
@@ -734,18 +773,11 @@ function viewDoc(id,key){
     else if(b.type.indexOf('image/')===0) dvb.innerHTML='<img src="'+b.url+'" alt="'+DL[key]+'" style="width:100%;max-height:400px;object-fit:contain">';
     else dvb.innerHTML='<div class="dvph"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg><p><strong>'+b.name+'</strong><br><a href="'+b.url+'" download="'+b.name+'" style="color:var(--vino);font-weight:600">Descargar</a></p></div>';
   } else {
-    dvb.innerHTML='<div class="dvph"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p style="margin-bottom:.5rem">No se ha subido este documento todavia.</p><div class="upa"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="uploadV('+id+',\''+key+'\',this)"><svg class="du-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Subir documento ahora</span></div></div>';
+    dvb.innerHTML='<div class="dvph"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>Este documento aun no ha sido publicado por la Secretaria de Bienestar.</p></div>';
   }
   openM('dv');
 }
-function uploadV(id,key,inp){
-  if(!inp.files.length)return;
-  const f=inp.files[0];const url=URL.createObjectURL(f);
-  B[id+'_'+key]={url:url,name:f.name,type:f.type};
-  const c=DATA.filter(function(x){return x.id===id;})[0];
-  if(c){if(!c.uploads)c.uploads={};c.uploads[key]=f.name;save();}
-  closeM('dv');toast('Documento subido: '+f.name);openDet(id);renderL();placeMarkers();
-}
+
 
 function renderA(){
   const t=DATA.length,mu=new Set(DATA.map(function(c){return c.municipio;})).size,pct=Math.round(t/35*100);
@@ -771,7 +803,7 @@ function renderA(){
       '<td><span class="rbdg '+cls+'">'+r.status+'</span></td>'+
       '<td>'+(ev>0?('<span style="font-size:11px;color:var(--verde);font-weight:600">'+ev+' archivo(s)</span>'):'<span style="color:#CCC;font-size:11px">-</span>')+'</td>'+
       '<td><button class="tb tg" onclick="openRD('+r.id+')">Ver / Seguimiento</button></td></tr>';
-  }).join(''):'<tr><td colspan="8" style="text-align:center;color:var(--gris);padding:2rem;font-size:12.5px">No hay reportes ciudadanos todavia.</td></tr>';
+  }).join(''):'<tr><td colspan="8" style="text-align:center;color:var(--gris);padding:2rem;font-size:12.5px">No hay reportes ciudadanos todavía.</td></tr>';
 }
 
 function swTab(t){
@@ -786,7 +818,7 @@ function mf(r,i,v){
 }
 function openNew(){
   EID=null;PD={};
-  document.getElementById('fmt').textContent='Registrar nuevo comite';
+  document.getElementById('fmt').textContent='Registrar nuevo comité';
   document.getElementById('fmid').value='';
   ['fmun','freg','ffec','fben','flat','flng'].forEach(function(id){document.getElementById(id).value='';});
   document.getElementById('fmems').innerHTML=ROLES.map(function(r,i){return mf(r,i,'');}).join('');
@@ -811,28 +843,33 @@ function openEdit(id){
   }).join('');
   document.getElementById('fdocs').innerHTML=DK.map(function(k){
     const h=B[c.id+'_'+k]||(c.uploads&&c.uploads[k]);
-    return '<div class="du'+(h?' done':'')+'" id="du'+k+'"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="mDoc('+c.id+',\''+k+'\',this)"><svg class="du-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span id="dl'+k+'">'+(h?('Subido: '+((c.uploads&&c.uploads[k])||DL[k])):DL[k])+'</span></div>';
+    return '<div class="du'+(h?' done':'')+'" id="du'+k+'"><input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="mDoc('+c.id+',\''+k+'\',this)"><svg class="du-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span id="dl'+k+'">'+(h?('Subido: '+((c.uploads&&c.uploads[k]&&c.uploads[k].name)||DL[k])):DL[k])+'</span></div>';
   }).join('');
   openM('form-m');
 }
 function mDoc(cid,k,inp){
   if(!inp.files.length)return;
-  const f=inp.files[0];const url=URL.createObjectURL(f);
-  PD[k]={url:url,name:f.name,type:f.type};
-  document.getElementById('du'+k).classList.add('done');
-  document.getElementById('dl'+k).textContent='Subido: '+f.name;
-  if(cid>0){
-    // Comite existente: guardar el documento de inmediato sin afectar el resto de la informacion
-    B[cid+'_'+k]={url:url,name:f.name,type:f.type};
-    const c=DATA.filter(function(x){return x.id===cid;})[0];
-    if(c){
-      if(!c.uploads)c.uploads={};
-      c.uploads[k]=f.name;
-      save();
-      renderL();renderA();placeMarkers();
-      toast('Documento "'+DL[k]+'" guardado correctamente');
+  const f=inp.files[0];
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const dataUrl=e.target.result;
+    PD[k]={url:dataUrl,name:f.name,type:f.type};
+    document.getElementById('du'+k).classList.add('done');
+    document.getElementById('dl'+k).textContent='Subido: '+f.name;
+    if(cid>0){
+      // Comite existente: guardar el documento de inmediato sin afectar el resto de la informacion
+      B[cid+'_'+k]={url:dataUrl,name:f.name,type:f.type};
+      const c=DATA.filter(function(x){return x.id===cid;})[0];
+      if(c){
+        if(!c.uploads)c.uploads={};
+        c.uploads[k]={name:f.name,type:f.type,data:dataUrl};
+        save();
+        renderL();renderA();placeMarkers();
+        toast('Documento "'+DL[k]+'" guardado correctamente');
+      }
     }
-  }
+  };
+  reader.readAsDataURL(f);
 }
 function saveC(){
   const mun=document.getElementById('fmun').value.trim(),reg=document.getElementById('freg').value,fec=document.getElementById('ffec').value;
@@ -852,17 +889,17 @@ function saveC(){
       DATA[idx]=Object.assign({},DATA[idx],{municipio:mun,region:reg,fecha:fec,beneficiarios:ben,lat:lat,lng:lng,integrantes:ints});
     }
   } else {
-    if(!fec){toast('Ingresa la fecha de constitucion');return;}
+    if(!fec){toast('Ingresa la fecha de constitución');return;}
     const ni=NID++;const uploads={};
     DK.forEach(function(k){if(PD[k]){B[ni+'_'+k]=PD[k];uploads[k]=PD[k].name;}});
     DATA.push({id:ni,municipio:mun,region:reg,fecha:fec,beneficiarios:ben,lat:lat,lng:lng,integrantes:ints,uploads:uploads});
   }
-  save();closeM('form-m');renderA();renderL();updS();placeMarkers();toast('Comite guardado correctamente');
+  save();closeM('form-m');renderA();renderL();updS();placeMarkers();toast('Comité guardado correctamente');
 }
 function delC(id){
-  if(!confirm('Eliminar este comite?'))return;
+  if(!confirm('¿Eliminar este comité?'))return;
   DATA=DATA.filter(function(c){return c.id!==id;});
-  save();renderA();renderL();updS();placeMarkers();toast('Comite eliminado');
+  save();renderA();renderL();updS();placeMarkers();restyleMunicipalities();toast('Comité eliminado');
 }
 
 const repOrigHTML=document.getElementById('rep-cnt').innerHTML;
@@ -879,7 +916,7 @@ function subRep(){
     fhecho:document.getElementById('rfec').value,
     freg:new Date().toISOString().slice(0,10),
     desc:desc,
-    nombre:document.getElementById('rnomb').value||'Anonimo',
+    nombre:document.getElementById('rnomb').value||'Anónimo',
     contacto:document.getElementById('rcont').value,
     status:'Pendiente',notas:'',resp:'',ev:[]
   });
@@ -887,7 +924,7 @@ function subRep(){
   document.getElementById('rep-cnt').innerHTML=
     '<div class="sbx"><h3>Reporte recibido exitosamente</h3>'+
     '<p>Tu reporte sobre <strong>"'+tipo+'"</strong> fue registrado con folio <strong>#'+folio+'</strong>.<br><br>'+
-    'La Direccion de Participacion Ciudadana lo atendera en un plazo maximo de <strong>5 dias habiles</strong>.<br><br>'+
+    'La Dirección de Participación Ciudadana lo atenderá en un plazo maximo de <strong>5 días hábiles</strong>.<br><br>'+
     'Gracias por contribuir a la transparencia del programa.</p></div>'+
     '<div class="mact" style="margin-top:1rem"><button class="bsv" onclick="closeM(\'rep-m\')">Cerrar</button></div>';
 }
@@ -922,12 +959,22 @@ function rndEv(r){
 }
 function addEv(inp){
   const r=REPS.filter(function(x){return x.id===ERID;})[0];if(!r)return;
-  Array.from(inp.files).forEach(function(f){
-    const url=URL.createObjectURL(f);const idx=(r.ev||[]).length;
-    if(!r.ev)r.ev=[];r.ev.push({name:f.name,type:f.type});
-    B['rep_'+r.id+'_'+idx]={url:url,name:f.name,type:f.type};
+  const files=Array.from(inp.files);
+  let pending=files.length;
+  if(!pending)return;
+  files.forEach(function(f){
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const dataUrl=e.target.result;
+      const idx=(r.ev||[]).length;
+      if(!r.ev)r.ev=[];
+      r.ev.push({name:f.name,type:f.type,data:dataUrl});
+      B['rep_'+r.id+'_'+idx]={url:dataUrl,name:f.name,type:f.type};
+      pending--;
+      if(pending===0){save();rndEv(r);toast(files.length+' archivo(s) agregado(s)');}
+    };
+    reader.readAsDataURL(f);
   });
-  save();rndEv(r);toast(inp.files.length+' archivo(s) agregado(s)');
 }
 function viewRE(rid,idx){
   const b=B['rep_'+rid+'_'+idx];if(!b)return;
